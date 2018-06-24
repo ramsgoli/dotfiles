@@ -40,3 +40,9 @@
 
     " Map fugitive git commands to more friendlier ones
     nmap :gs<CR> :Gstatus<CR>
+
+" Key mappings
+    let mapleader = ";"
+
+    map <Leader>s :w<CR>
+    map <Leader>q :q<CR>
