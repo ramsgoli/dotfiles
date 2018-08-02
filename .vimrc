@@ -3,7 +3,6 @@
     Plug 'tomasiser/vim-code-dark'
     Plug 'pangloss/vim-javascript'
     Plug 'maxmellon/vim-jsx-pretty'
-    Plug 'fatih/vim-go'
     call plug#end()
     execute pathogen#infect()
 
@@ -13,9 +12,8 @@
     set expandtab
     set tabstop=4
 
-" Popup
-    au filetype go inoremap <buffer> . .<C-x><C-o>
-    set completeopt+=menuone,noselect,noinsert
+" YCM
+    let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " Editor niceties
     set splitright
@@ -54,6 +52,16 @@
     nnoremap :gs<CR> :Gstatus<CR>
     " Map Shift f to *, which find all occurences of word under cursor
     nnoremap <S-f> *
+
+    " Open .vimrc in vertical split
+    nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
+
+    " Source .vimrc
+    nnoremap <Leader>sv :source $MYVIMRC<CR>
+
+    " Add comments to js files with <Leader>c
+    autocmd FileType javascript nnoremap <localleader>c I// <esc>
+
 
 " Command-T
     if &term =~ "xterm" || &term =~ "screen"
