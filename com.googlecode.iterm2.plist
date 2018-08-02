@@ -69,7 +69,7 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>795 756 918 401 0 0 1920 1200 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>226 93 1200 720 0 0 1920 1200 </string>
+	<string>112 62 1874 1004 0 0 1920 1200 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>212 106 570 452 0 0 1680 1050 </string>
 	<key>New Bookmarks</key>
@@ -1449,6 +1449,8 @@
 	<false/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>503095648.15924001</real>
+	<key>PMPrintingExpandedStateForPrint2</key>
+	<false/>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -1484,6 +1486,8 @@
 	</dict>
 	<key>PrefsCustomFolder</key>
 	<string>/Users/ramgoli/dotfiles</string>
+	<key>Print In Black And White</key>
+	<true/>
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
 	<key>SUFeedAlternateAppNameKey</key>
@@ -1493,7 +1497,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-06-24T03:48:17Z</date>
+	<date>2018-07-09T23:36:52Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>TabStyle</key>

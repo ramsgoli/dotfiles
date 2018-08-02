@@ -3,6 +3,7 @@
     Plug 'tomasiser/vim-code-dark'
     Plug 'pangloss/vim-javascript'
     Plug 'maxmellon/vim-jsx-pretty'
+    Plug 'fatih/vim-go'
     call plug#end()
     execute pathogen#infect()
 
@@ -11,6 +12,10 @@
     set softtabstop=4
     set expandtab
     set tabstop=4
+
+" Popup
+    au filetype go inoremap <buffer> . .<C-x><C-o>
+    set completeopt+=menuone,noselect,noinsert
 
 " Editor niceties
     set splitright
@@ -33,16 +38,24 @@
     let g:vim_jsx_pretty_enable_jsx_highlight = 1
 
 " Nerdtree
-    let NERDTreeIgnore = ['\.o$', '\.out$']
+    let NERDTreeIgnore = ['\.o$', '\.out$', '\.swp$', '.git']
+    let NERDTreeShowHidden=1
 
     " open nerdtree with Ctrl-n
     map <C-n> :NERDTreeToggle<CR> 
 
-    " Map fugitive git commands to more friendlier ones
-    nmap :gs<CR> :Gstatus<CR>
-
 " Key mappings
     let mapleader = ";"
 
-    map <Leader>s :w<CR>
-    map <Leader>q :q<CR>
+    noremap <Leader>s :w<CR>
+    noremap <Leader>q :q<CR>
+
+    " Map fugitive git commands to more friendlier ones
+    nnoremap :gs<CR> :Gstatus<CR>
+    " Map Shift f to *, which find all occurences of word under cursor
+    nnoremap <S-f> *
+
+" Command-T
+    if &term =~ "xterm" || &term =~ "screen"
+        let g:CommandTCancelMap = ['<ESC>', '<C-c>']
+    endif
