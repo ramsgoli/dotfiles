@@ -1,10 +1,12 @@
 " Plugins
-    call plug#begin('~/.vim/plugged') 
+    call plug#begin('~/.vim/plugged')
     Plug 'tomasiser/vim-code-dark'
     Plug 'pangloss/vim-javascript'
     Plug 'maxmellon/vim-jsx-pretty'
     Plug 'yssl/QFEnter'
     Plug 'bronson/vim-trailing-whitespace'
+    Plug 'wincent/command-t'
+    Plug 'scrooloose/nerdtree'
     call plug#end()
     execute pathogen#infect()
 
