@@ -7,8 +7,8 @@
     Plug 'bronson/vim-trailing-whitespace'
     Plug 'wincent/command-t'
     Plug 'scrooloose/nerdtree'
+    Plug 'valloric/YouCompleteMe'
     call plug#end()
-    execute pathogen#infect()
 
 " YCM
     let g:ycm_autoclose_preview_window_after_insertion = 1
