@@ -2,12 +2,14 @@
     call plug#begin('~/.vim/plugged')
     Plug 'tomasiser/vim-code-dark'
     Plug 'pangloss/vim-javascript'
+    Plug 'jremmen/vim-ripgrep'
     Plug 'maxmellon/vim-jsx-pretty'
     Plug 'yssl/QFEnter'
-    Plug 'bronson/vim-trailing-whitespace'
     Plug 'wincent/command-t'
     Plug 'scrooloose/nerdtree'
     Plug 'valloric/YouCompleteMe'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'itchyny/lightline.vim'
     call plug#end()
 
 " YCM
@@ -25,11 +27,6 @@
     set ignorecase  " ignore case when searching
     set conceallevel=0
 
-    if $TERM_PROGRAM =~ "iTerm"
-        let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
-        let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
-    endif
-
 " Colors + Syntax highlighting
     set t_Co=256
     set t_ut=
@@ -42,7 +39,7 @@
     let NERDTreeShowHidden=1
 
     " open nerdtree with Ctrl-n
-    map <C-n> :NERDTreeToggle<CR> 
+    map <C-n> :NERDTreeToggle<CR>
 
 " Key mappings
     let mapleader = ";"
@@ -78,9 +75,10 @@
 
 " Status Line
     set laststatus=2
-    set statusline=
-    set statusline+=%=
-    set statusline+=col:\ %c
+    set noshowmode
+    " set statusline=
+    " set statusline+=%=
+    " set statusline+=col:\ %c
 
 " Command-T
     if &term =~ "xterm" || &term =~ "screen"
