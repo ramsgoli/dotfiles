@@ -75,6 +75,7 @@
 
 " Status Line
     set laststatus=2
+    let g:NERDTreeStatusline = '%#NonText#'
     set noshowmode
     " set statusline=
     " set statusline+=%=
