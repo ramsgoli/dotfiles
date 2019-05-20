@@ -10,10 +10,20 @@
     Plug 'valloric/YouCompleteMe'
     Plug 'jiangmiao/auto-pairs'
     Plug 'itchyny/lightline.vim'
+    Plug 'leafgarland/typescript-vim'
+    Plug 'tpope/vim-fugitive'
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+    Plug 'stamblerre/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+    Plug 'chr4/nginx.vim'
     call plug#end()
 
 " YCM
+    let g:ycm_server_keep_logfiles = 1
     let g:ycm_autoclose_preview_window_after_insertion = 1
+    " let g:ycm_filetype_blacklist = { 'go': 1 }
+
+" Typescript
+    autocmd BufEnter *.tsx set filetype=typescript
 
 " Editor niceties
     set splitright
