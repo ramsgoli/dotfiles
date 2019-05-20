@@ -41,6 +41,9 @@
 	" Re-read file if it changes outside of vim
 	set autoread
 
+	" Don't search inside node_modules
+	set wildignore+=*/node_modules/*
+
 
 " Theme
 	set termguicolors
