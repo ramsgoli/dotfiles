@@ -51,3 +51,9 @@
 
 " Shortcuts
 	noremap <leader>sv :source ~/.config/nvim/init.vim<CR>
+
+" Command-t
+	let g:CommandTCancelMap = ['<ESC>', '<C-c>']
+
+" Filetype
+	autocmd FileType html setlocal ts=2 sts=2 sw=2
