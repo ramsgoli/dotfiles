@@ -44,16 +44,32 @@
 	" Don't search inside node_modules
 	set wildignore+=*/node_modules/*
 
+	" hit space to visually select a word
+	nnoremap <space> viw
+
+	" hit - to move the current line down by one
+	nnoremap - ddp
+
+	" edit init.vim in a vertical split
+	noremap <leader>ev :vsplit $MYVIMRC<cr>
+
+	" source vimrc with sv
+	noremap <leader>sv :source ~/.config/nvim/init.vim<CR>
+
+	" surround word in quotes (normal mode only)
+	nnoremap " i"<esc>ea"<esc>
 
 " Theme
 	set termguicolors
 	colorscheme onedark
-
-" Shortcuts
-	noremap <leader>sv :source ~/.config/nvim/init.vim<CR>
 
 " Command-t
 	let g:CommandTCancelMap = ['<ESC>', '<C-c>']
 
 " Filetype
 	autocmd FileType html setlocal ts=2 sts=2 sw=2
+	autocmd FileType css setlocal ts=2 sts=2 sw=2
+	autocmd FileType javascript setlocal ts=2 sts=2 sw=2 smarttab expandtab
+
+" COC
+	nmap <silent> gd <Plug>(coc-definition)
