@@ -85,21 +85,6 @@ source $ZSH/oh-my-zsh.sh
 #
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias sshpi="ssh pi@169.232.121.220"
-export PIIP="169.232.121.220"
-
-# reactor 
-setup_react() {
-    wget https://github.com/ramsgoli/reactor/archive/master.zip
-    tar -xzvf master.zip
-    mv reactor-master $1
-    rm -rf master.zip
-}
-
-copyPi() {
-    scp $1 pi@169.232.121.220:$2
-}
-alias copyPi=copyPi
 
 # Path to my own personal binaries
 export PATH=$PATH:/Users/ramgoli/bin
