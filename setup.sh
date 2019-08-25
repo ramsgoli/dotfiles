@@ -14,7 +14,14 @@ brew install neovim
 echo "done"
 
 echo "Linking neovim's config file to ./init.vim..."
-ln -s ./init.vim ~/.config/nvim/init.vim 
+if [ -e ~/.config/nvim/init.vim ] then
+	read -p "Found an existing ~/.config/nvim/init.vim file. Would you like to override it? [y|n]" ANSWER
+	if [ $ANSWER = (y|Y) ] then
+		rm ~/.config/nvim/init.vim
+		ln -s ./init.vim ~/.config/nvim/init.vim 
+	fi
+else
+	ln -s ./init.vim ~/.config/nvim/init.vim 
 echo "done"
 
 echo "Installing neovim's plugins with PlugInstall..."
@@ -26,6 +33,32 @@ brew install zsh zsh-completions
 chsh -s /bin/zsh
 echo "done"
 
-echo "Linking zshrc..."
-ln -s ./zshrc ~/.zshrc
+echo "Installing oh-my-szh..."
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 echo "done"
+
+echo "Linking zshrc..."
+if [ -e ~/.zshrc ] then
+	read -p "Found an existing ~/.zshrc file. Would you like to override it? [y|n]" ANSWER
+	if [ $ANSWER = (y|Y) ] then
+		rm ~/.zshrc
+		ln -s ./zshrc ~/.zshrc
+	fi
+else
+	ln -s ./zshrc ~/.zshrc
+echo "done"
+
+APPLICATIONS=(
+	iterm2
+	alfred
+	spotify
+	notion
+	docker
+)
+echo "Installing the following applications: ${APPLICATIONS[@]} in parallel..."
+
+echo "${APPLICATIONS[@]}" | xargs -n 1 -P 2 brew cask install
+
+echo "================"
+echo "    All Done!   "
+echo "================"
