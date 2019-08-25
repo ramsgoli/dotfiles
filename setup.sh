@@ -48,6 +48,17 @@ else
 	ln -s ./zshrc ~/.zshrc
 echo "done"
 
+echo "Setting up your git credentials..."
+read -p "Enter your name for git commits" NAME
+read -p "Enter your github email" EMAIL
+
+git config --gloal user.name "${NAME}"
+git config --global user.email "${EMAIL}"
+
+echo "We will install Git and the osxkeychain helper using homebrew"
+brew install git
+git config --global credential.helper oxskeychain
+
 APPLICATIONS=(
 	iterm2
 	alfred
