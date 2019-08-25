@@ -5,6 +5,8 @@ echo " Ram Goli's startup script!"
 echo "    Use at your own risk"
 echo "============================"
 
+PWD=$(PWD)
+
 echo "Installing homebrew..."
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 echo "done"
@@ -37,6 +39,14 @@ echo "Installing oh-my-szh..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 echo "done"
 
+PLUGINS=(
+	https://github.com/unixorn/warhol.plugin.zsh.git
+)
+echo "Installing the following oh my zsh plugins: ${PLUGINS[@]}"
+cd ~/.oh-my-zsh/custom/plugins/
+
+git clone https://github.com/unixorn/warhol.plugin.zsh.git warhol
+
 echo "Linking zshrc..."
 if [ -e ~/.zshrc ] then
 	read -p "Found an existing ~/.zshrc file. Would you like to override it? [y|n]" ANSWER
@@ -46,6 +56,8 @@ if [ -e ~/.zshrc ] then
 	fi
 else
 	ln -s ./zshrc ~/.zshrc
+echo "now sourcing it..."
+source ~/.zshrc
 echo "done"
 
 echo "Setting up your git credentials..."
