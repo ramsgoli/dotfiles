@@ -94,7 +94,7 @@ git config --global user.email "${EMAIL}"
 
 echo "We will install Git and the osxkeychain helper using homebrew"
 brew install git
-git config --global credential.helper oxskeychain
+git config --global credential.helper osxkeychain
 
 APPLICATIONS=(
 	iterm2
