@@ -1,5 +1,6 @@
 " Plugins
 	call plug#begin('~/.local/share/nvim/plugged')
+	Plug 'joshdick/onedark.vim'
 	Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 	Plug 'sheerun/vim-polyglot'  " Language pack
 	Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
