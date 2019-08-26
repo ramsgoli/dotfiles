@@ -5,7 +5,8 @@
 	Plug 'sheerun/vim-polyglot'  " Language pack
 	Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 	Plug 'vimlab/split-term.vim'
-	Plug 'wincent/command-t'
+	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+	Plug 'junegunn/fzf.vim'
 	call plug#end()
 
 " NerdTree
