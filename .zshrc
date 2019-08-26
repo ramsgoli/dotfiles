@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/ramgoli/.oh-my-zsh
+export ZSH=${HOME}/.oh-my-zsh
 
 # Path to my personal binaries
 
@@ -10,7 +10,7 @@ export ZSH=/Users/ramgoli/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="agnoster"
-DEFAULT_USER="ramgoli"
+DEFAULT_USER="ramsgoli"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -87,13 +87,13 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Path to my own personal binaries
-export PATH=$PATH:/Users/ramgoli/bin
+export PATH=$PATH:${HOME}/bin
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/ramgoli/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/ramgoli/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '${HOME}/google-cloud-sdk/path.zsh.inc' ]; then source '${HOME}/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/ramgoli/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/ramgoli/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '${HOME}/google-cloud-sdk/completion.zsh.inc' ]; then source '${HOME}/google-cloud-sdk/completion.zsh.inc'; fi
 
 # Path to node binaries
 export PATH=$PATH:/usr/local/bin/node
