@@ -110,6 +110,25 @@ do
 	brew cask install "${APP}"
 done
 
+echo "Now installing a couple more packages with brew"
+
+PACKAGES=(
+	fzf
+	ripgrep
+	firebase-cli
+	docker
+	hugo
+)
+
+for package in "${PACKAGES[@]}"
+do
+	brew install "${package}"
+done
+
+echo Installing useful key bindings and fuzzy completion for fzf
+$(brew --prefix)/opt/fzf/install
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
+
 echo "================"
 echo "    All Done!   "
 echo "================"

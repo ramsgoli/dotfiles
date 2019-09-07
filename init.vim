@@ -19,10 +19,11 @@
 	augroup nerd_tree
 		autocmd! 
 		autocmd VimEnter * NERDTree
+		autocmd VimEnter * wincmd p
+		" Automaticaly close nvim if NERDTree is only thing left open
 		autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 	augroup END
 
-	" Automaticaly close nvim if NERDTree is only thing left open
 
 " General Editor Config
 	" Remap leader key to ;
