@@ -120,3 +120,21 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# initialize pyenv
+export PATH="/Users/ramsgoli/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+# jenv
+if which jenv > /dev/null; then eval "$(jenv init -)"; fi
+export PATH="$HOME/.jenv/shims:$PATH"
+
+# rbenv
+eval "$(rbenv init -)"
+
+export NODE_ENV=dev
+eval "$(direnv hook zsh)"  # If you use Zsh
+export PGHOST=localhost
+export PGUSER=heap
+export PGDATABASE=heap
