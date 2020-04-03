@@ -18,6 +18,17 @@
 	Plug 'fatih/vim-go'	
 	call plug#end()
 
+" FZF
+
+	" Allows options to be passed into :Rg command
+	command! -bang -nargs=* Rg
+	  \ call fzf#vim#grep(
+	  \   'rg --column --line-number --no-heading --color=always ' 
+	  \  . (len(<q-args>) > 0 ? <q-args> : '""'), 1,
+	  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+	  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+	  \   <bang>0)
+
 " NerdTree
 	let NERDTreeShowHidden=1
 
