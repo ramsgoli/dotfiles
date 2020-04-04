@@ -37,7 +37,6 @@
 
 	" Enter NerdTree automatically
 	augroup nerd_tree
-		autocmd! 
 		autocmd VimEnter * NERDTree
 		autocmd VimEnter * wincmd p
 		" Automaticaly close nvim if NERDTree is only thing left open
@@ -88,6 +87,9 @@
 	" Open :GFiles (fzf) with ;f
 	nnoremap <leader>f :GFiles<CR>
 
+	" Disable highlight with ;<space>
+	nnoremap <leader><space> :nohl<CR>
+
 " Theme
 	set termguicolors
 	colorscheme onedark
@@ -97,37 +99,30 @@
 
 " Filetype
 	augroup filetype_html
-		autocmd!
 		autocmd FileType html setlocal ts=2 sts=2 sw=2
 	augroup END
 
 	augroup filetype_css
-		autocmd!
 		autocmd FileType css setlocal ts=2 sts=2 sw=2
 	augroup END
 
 	augroup filetype_javascript
-		autocmd!
 		autocmd FileType javascript setlocal ts=2 sts=2 sw=2 smarttab expandtab
 	augroup END
 
 	augroup filetype_typescript
-		autocmd!
 		autocmd FileType typescript setlocal ts=2 sts=2 sw=2 smarttab expandtab
 	augroup END
 
 	augroup filetype_tsx
-		autocmd!
 		autocmd BufRead,BufNewFile *.tsx setlocal ts=2 sts=2 sw=2 smarttab expandtab
 	augroup END
 
 	augroup filetype_java
-		autocmd!
 		autocmd FileType java setlocal ts=4 sts=4 sw=4 smarttab expandtab
 	augroup END
 
 	augroup filetype_pug
-		autocmd!
 		autocmd BufRead,BufNewFile *.pug setlocal ts=2 sts=2 sw=2 smarttab expandtab
 	augroup END
 
@@ -198,7 +193,6 @@
 	nmap <leader>rn <Plug>(coc-rename)
 
 	augroup mygroup
-	  autocmd!
 	  " Setup formatexpr specified filetype(s).
 	  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
 	  " Update signature help on jump placeholder
