@@ -85,7 +85,7 @@
 	nnoremap " i"<esc>ea"<esc>
 
 	" Open :GFiles (fzf) with ;f
-	nnoremap <leader>f :GFiles<CR>
+	nnoremap <leader>f :GFiles --cached --others --exclude-standard<CR>
 
 	" Disable highlight with ;<space>
 	nnoremap <leader><space> :nohl<CR>

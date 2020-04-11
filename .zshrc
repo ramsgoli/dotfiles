@@ -121,9 +121,8 @@ export GOPATH=~/go
 export PATH=$PATH:$(go env GOPATH)/bin
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
-
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # initialize pyenv
@@ -143,3 +142,32 @@ eval "$(direnv hook zsh)"  # If you use Zsh
 export PGHOST=localhost
 export PGUSER=heap
 export PGDATABASE=heap
+
+
+_git_checkout ()
+{
+	__git_has_doubledash && return
+
+	case "$cur" in
+	--conflict=*)
+		__gitcomp "diff3 merge" "" "${cur##--conflict=}"
+		;;
+	--*)
+		__gitcomp_builtin checkout
+		;;
+	*)
+		# check if --track, --no-track, or --no-guess was specified
+		# if so, disable DWIM mode
+		local flags="--track --no-track --no-guess" track_opt="--track"
+		if [ "$GIT_COMPLETION_CHECKOUT_NO_GUESS" = "1" ] ||
+		   [ -n "$(__git_find_on_cmdline "$flags")" ]; then
+			track_opt=''
+		fi
+		if [ "$command" = "checkoutr" ]; then
+		    __git_complete_refs $track_opt
+		else
+		    __gitcomp_direct "$(__git_heads "" "$cur" " ")"
+		fi
+		;;
+	esac
+}
