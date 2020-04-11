@@ -1,0 +1,21 @@
+{
+    "languageserver": {
+        "golang": {
+            "command": "gopls",
+            "filetypes": [
+                "go"
+            ],
+            "rootPatterns": [
+                "go.mod",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ]
+        }
+    },
+    "coc.preferences.hoverTarget": "echo",
+    "signature.target": "echo",
+    "javascript.suggestionActions.enabled": false,
+    "javascript.validate.enable": false,
+    "coc.preferences.jumpCommand": "Split"
+}
