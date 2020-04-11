@@ -106,6 +106,11 @@ alias gd="git diff"
 alias gc="git commit -m"
 alias gp="git push"
 
+# source git scripts
+if [[ -f ~/git_scripts.sh ]] then
+	source ~/git_scripts.sh
+fi
+
 # Tmux aliases
 alias t="tmux"
 alias ta="tmux attach-session -t"

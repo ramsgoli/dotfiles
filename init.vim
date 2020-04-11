@@ -98,12 +98,17 @@
 	let g:CommandTCancelMap = ['<ESC>', '<C-c>']
 
 " Filetype
+
+	augroup filetype_vim
+		autocmd FileType vim setlocal foldmethod=marker
+	augroup END
+
 	augroup filetype_html
 		autocmd FileType html setlocal ts=2 sts=2 sw=2
 	augroup END
 
 	augroup filetype_css
-		autocmd FileType css setlocal ts=2 sts=2 sw=2
+		autocmd BufRead,BufNewFile *.css,*.scss setlocal ts=2 sts=2 sw=2
 	augroup END
 
 	augroup filetype_javascript
@@ -229,3 +234,22 @@
 	nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 	" Resume latest coc list
 	nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+	function! MySplit(...)
+	    let cursor=split(a:1, ' ')[1]
+	    let fname=split(a:1, ' ')[2]
+	    let bufnum=bufnr(expand(fname))
+	    let winnum=bufwinnr(bufnum)
+	    if winnum != -1
+		" Jump to existing split
+		exe winnum . "wincmd w"
+	    else
+		" Make new split as usual
+		exe "vsplit " . fname
+	    endif
+	    exe "call" cursor
+	endfunction
+
+
+	command! -nargs=1 Split :call MySplit("<args>")
+	cabbrev split Split
