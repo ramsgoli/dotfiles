@@ -235,21 +235,18 @@
 	" Resume latest coc list
 	nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-	function! MySplit(...)
-	    let cursor=split(a:1, ' ')[1]
-	    let fname=split(a:1, ' ')[2]
-	    let bufnum=bufnr(expand(fname))
+	function! SplitIfNotOpen(call, fname)
+	    let bufnum=bufnr(expand(a:fname))
 	    let winnum=bufwinnr(bufnum)
 	    if winnum != -1
 		" Jump to existing split
 		exe winnum . "wincmd w"
 	    else
 		" Make new split as usual
-		exe "vsplit " . fname
+		exe "vsplit " . a:fname
 	    endif
-	    exe "call" cursor
+	    " Execute the cursor movement command
+	    exe a:call
 	endfunction
 
-
-	command! -nargs=1 Split :call MySplit("<args>")
-	cabbrev split Split
+	command! -nargs=+ CocSplitIfNotOpen :call SplitIfNotOpen(<f-args>)
