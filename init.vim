@@ -13,17 +13,16 @@
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'sgur/vim-editorconfig'
 	Plug 'tpope/vim-fugitive'
-	
+
 	" Golang
-	Plug 'fatih/vim-go'	
+	Plug 'fatih/vim-go'
 	call plug#end()
 
 " FZF
-
 	" Allows options to be passed into :Rg command
 	command! -bang -nargs=* Rg
 	  \ call fzf#vim#grep(
-	  \   'rg --column --line-number --no-heading --color=always ' 
+	  \   'rg --column --line-number --no-heading --color=always '
 	  \  . (len(<q-args>) > 0 ? <q-args> : '""'), 1,
 	  \   <bang>0 ? fzf#vim#with_preview('up:60%')
 	  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
@@ -45,6 +44,13 @@
 
 
 " General Editor Config
+
+	" In my ITerm perferences, I map <C-i> to <a-i> (esc i)
+	" This means that pressing <C-i> actually sends <a-i> to the neovim
+	" process
+	" So, I remap <a-i> back to <c-i> here
+	noremap <a-i> <C-i>
+
 	" Remap leader key to ;
 	let g:mapleader=';'
 
@@ -89,6 +95,14 @@
 
 	" Disable highlight with ;<space>
 	nnoremap <leader><space> :nohl<CR>
+
+	" Navigate buffers with <TAB> and <SHIFT TAB>
+	nnoremap <silent> <Tab> :bn<CR>
+	nnoremap <silent> <S-Tab> :bp<CR>
+	nnoremap <silent> <C-c> :bp\|bd #<CR>
+
+	" Show current file in NerdTree Menu
+	nnoremap <silent> <leader>sf :NERDTreeFind<CR>
 
 " Theme
 	set termguicolors
