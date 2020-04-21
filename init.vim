@@ -2,7 +2,6 @@
 	call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'joshdick/onedark.vim'
 	Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-	Plug 'sheerun/vim-polyglot'  " Language pack
 	Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 	Plug 'vimlab/split-term.vim'
 	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -14,8 +13,9 @@
 	Plug 'sgur/vim-editorconfig'
 	Plug 'tpope/vim-fugitive'
 
-	" Golang
-	Plug 'fatih/vim-go'
+	" languages
+	" Plug 'fatih/vim-go'	
+	Plug 'sheerun/vim-polyglot'  " Language pack
 	call plug#end()
 
 " FZF
@@ -56,7 +56,7 @@
 
 	syntax on
 	set splitright
-	set nu
+	set relativenumber
 	set shell=/bin/zsh
 	set nowrap
 
