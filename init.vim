@@ -39,8 +39,11 @@
 		autocmd VimEnter * NERDTree
 		autocmd VimEnter * wincmd p
 		" Automaticaly close nvim if NERDTree is only thing left open
-		" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+		autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 	augroup END
+
+	let NERDTreeMinimalUI = 1
+	let NERDTreeDirArrows = 1
 
 
 " General Editor Config
@@ -56,7 +59,7 @@
 
 	syntax on
 	set splitright
-	set relativenumber
+	set number relativenumber
 	set shell=/bin/zsh
 	set nowrap
 
@@ -74,9 +77,6 @@
 
 	" Don't search inside node_modules
 	set wildignore+=*/node_modules/*
-
-	" hit space to visually select a word
-	nnoremap <space> viw
 
 	" hit - to move the current line down by one
 	nnoremap - ddp
@@ -101,8 +101,18 @@
 	nnoremap <silent> <S-Tab> :bp<CR>
 	nnoremap <silent> <C-c> :bp\|bd #<CR>
 
+	" Repeat last f/F/t/T search wih <CR>
+	nnoremap <CR> ;	
+	
+	
 	" Show current file in NerdTree Menu
 	nnoremap <silent> <leader>sf :NERDTreeFind<CR>
+
+	function! GrepCurrentFileName() 
+		execute "Rg" expand("%:t")
+	endfunction
+
+	command! GrepCurrentFileName call GrepCurrentFileName()
 
 " Theme
 	set termguicolors
@@ -130,11 +140,11 @@
 	augroup END
 
 	augroup filetype_typescript
-		autocmd FileType typescript setlocal ts=2 sts=2 sw=2 smarttab expandtab
+		autocmd FileType typescript setlocal ts=2 sts=2 sw=2 smarttab expandtab colorcolumn=140
 	augroup END
 
 	augroup filetype_tsx
-		autocmd BufRead,BufNewFile *.tsx setlocal ts=2 sts=2 sw=2 smarttab expandtab
+		autocmd FileType typescriptreact setlocal ts=2 sts=2 sw=2 smarttab expandtab colorcolumn=140
 	augroup END
 
 	augroup filetype_java
@@ -148,6 +158,7 @@
 " Airline
 	let g:airline#extensions#tabline#enabled = 1
 	let g:airline#extensions#branch#enabled = 0
+	let g:airline_section_y = ''
 	set noshowmode  " to get rid of thing like --INSERT--
 	set noshowcmd  " to get rid of display of last command
 	set shortmess+=F  " to get rid of the file name displayed in the command line bar
@@ -167,7 +178,7 @@
 	set nowritebackup
 
 	" You will have bad experience for diagnostic messages when it's default 4000.
-	set updatetime=300
+	set updatetime=100
 
 	" don't give |ins-completion-menu| messages.
 	set shortmess+=c

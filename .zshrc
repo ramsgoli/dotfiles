@@ -99,22 +99,10 @@ if [ -f '${HOME}/google-cloud-sdk/completion.zsh.inc' ]; then source '${HOME}/go
 export PATH=$PATH:/usr/local/bin/node
 export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
 
-# Git aliases
-alias gch="git checkout"
-alias gs="git status"
-alias gd="git diff"
-alias gc="git commit -m"
-alias gp="git push"
-
 # source git scripts
 if [[ -f ~/git_scripts.sh ]] then
 	source ~/git_scripts.sh
 fi
-
-# Tmux aliases
-alias t="tmux"
-alias ta="tmux attach-session -t"
-alias tn="tmux new -s"
 
 # Go path (yeah I know its the default path, but just to be explicit"
 export GOPATH=~/go
@@ -142,6 +130,8 @@ eval "$(direnv hook zsh)"  # If you use Zsh
 export PGHOST=localhost
 export PGUSER=heap
 export PGDATABASE=heap
+
+source $HOME/.aliases
 
 
 _git_checkout ()
