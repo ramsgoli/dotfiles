@@ -1,6 +1,7 @@
 " Plugins
 	call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'joshdick/onedark.vim'
+	Plug 'tomasiser/vim-code-dark'
 	Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 	Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 	Plug 'vimlab/split-term.vim'
@@ -13,8 +14,13 @@
 	Plug 'sgur/vim-editorconfig'
 	Plug 'tpope/vim-fugitive'
 
+	" Syntax highlighting for javascript/typescript
+	" Plug 'leafgarland/typescript-vim'
+	" Plug 'pangloss/vim-javascript'
+	Plug 'HerringtonDarkholme/yats.vim'
+
 	" languages
-	" Plug 'fatih/vim-go'	
+	" Plug 'fatih/vim-go'
 	Plug 'sheerun/vim-polyglot'  " Language pack
 	call plug#end()
 
@@ -33,14 +39,6 @@
 
 	" open NerdTree with <C-n>
 	nnoremap <C-n> :NERDTreeToggle<CR>
-
-	" Enter NerdTree automatically
-	augroup nerd_tree
-		autocmd VimEnter * NERDTree
-		autocmd VimEnter * wincmd p
-		" Automaticaly close nvim if NERDTree is only thing left open
-		autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-	augroup END
 
 	let NERDTreeMinimalUI = 1
 	let NERDTreeDirArrows = 1
@@ -102,13 +100,12 @@
 	nnoremap <silent> <C-c> :bp\|bd #<CR>
 
 	" Repeat last f/F/t/T search wih <CR>
-	nnoremap <CR> ;	
-	
-	
+	nnoremap <CR> ;
+
 	" Show current file in NerdTree Menu
 	nnoremap <silent> <leader>sf :NERDTreeFind<CR>
 
-	function! GrepCurrentFileName() 
+	function! GrepCurrentFileName()
 		execute "Rg" expand("%:t")
 	endfunction
 
@@ -116,7 +113,7 @@
 
 " Theme
 	set termguicolors
-	colorscheme onedark
+	colorscheme codedark
 
 " Command-t
 	let g:CommandTCancelMap = ['<ESC>', '<C-c>']
