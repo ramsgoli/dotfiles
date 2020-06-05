@@ -123,7 +123,7 @@ if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 export PATH="$HOME/.jenv/shims:$PATH"
 
 # rbenv
-eval "$(rbenv init -)"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 export NODE_ENV=dev
 eval "$(direnv hook zsh)"  # If you use Zsh
@@ -132,7 +132,6 @@ export PGUSER=heap
 export PGDATABASE=heap
 
 source $HOME/.aliases
-
 
 _git_checkout ()
 {
@@ -161,3 +160,5 @@ _git_checkout ()
 		;;
 	esac
 }
+fpath+=${ZDOTDIR:-~}/.zsh_functions
+autoload -U $fpath[1]/*(.:t)
