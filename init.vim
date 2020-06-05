@@ -2,6 +2,7 @@
 	call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'joshdick/onedark.vim'
 	Plug 'tomasiser/vim-code-dark'
+	Plug 'morhetz/gruvbox'
 	Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 	Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 	Plug 'vimlab/split-term.vim'
@@ -13,16 +14,29 @@
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'sgur/vim-editorconfig'
 	Plug 'tpope/vim-fugitive'
+	Plug 'mhinz/vim-startify'
+	Plug 'justinmk/vim-sneak'
+	Plug 'dense-analysis/ale'
 
 	" Syntax highlighting for javascript/typescript
 	" Plug 'leafgarland/typescript-vim'
 	" Plug 'pangloss/vim-javascript'
-	Plug 'HerringtonDarkholme/yats.vim'
+	" Plug 'HerringtonDarkholme/yats.vim'
 
 	" languages
 	" Plug 'fatih/vim-go'
 	Plug 'sheerun/vim-polyglot'  " Language pack
 	call plug#end()
+
+" Startify
+	let g:startify_change_to_vcs_root = 1
+
+" Ale
+	let g:ale_fix_on_save = 1
+	let g:ale_fixers = {
+	\ 	'typescriptreact': ['prettier', 'eslint'],
+	\ 	'typescript': ['prettier', 'eslint'],
+	\}
 
 " FZF
 	" Allows options to be passed into :Rg command
@@ -53,7 +67,7 @@
 	noremap <a-i> <C-i>
 
 	" Remap leader key to ;
-	let g:mapleader=';'
+	let g:mapleader=' '
 
 	syntax on
 	set splitright
@@ -112,8 +126,7 @@
 	command! GrepCurrentFileName call GrepCurrentFileName()
 
 " Theme
-	set termguicolors
-	colorscheme codedark
+	colorscheme gruvbox
 
 " Command-t
 	let g:CommandTCancelMap = ['<ESC>', '<C-c>']
@@ -156,6 +169,7 @@
 	let g:airline#extensions#tabline#enabled = 1
 	let g:airline#extensions#branch#enabled = 0
 	let g:airline_section_y = ''
+	let g:airline_theme='gruvbox'
 	set noshowmode  " to get rid of thing like --INSERT--
 	set noshowcmd  " to get rid of display of last command
 	set shortmess+=F  " to get rid of the file name displayed in the command line bar
