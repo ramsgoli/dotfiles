@@ -1,0 +1,14 @@
+dirty=$(git diff --quiet)
+
+if $dirty; then
+	echo "stashing unstaged changes"
+	git stash
+fi
+
+git fetch origin && git rebase origin/develop
+git stash pop
+
+if $dirty; then
+	echo "popping stashed changes"
+	git stash pop
+fi
