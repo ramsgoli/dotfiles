@@ -2,7 +2,8 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=${HOME}/.oh-my-zsh
+export ZDOTDIR=~/dotfiles/zsh
+export ZSH=${ZDOTDIR}/.oh-my-zsh
 
 # Path to my personal binaries
 
@@ -130,8 +131,6 @@ eval "$(direnv hook zsh)"  # If you use Zsh
 export PGHOST=localhost
 export PGUSER=heap
 export PGDATABASE=heap
-
-source $HOME/.aliases
 
 _git_checkout ()
 {
