@@ -159,5 +159,5 @@ _git_checkout ()
 		;;
 	esac
 }
-fpath+=${ZDOTDIR:-~}/.zsh_functions
+fpath=(${ZDOTDIR}/.zsh_functions $fpath);
 autoload -U $fpath[1]/*(.:t)
