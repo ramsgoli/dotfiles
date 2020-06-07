@@ -1,0 +1,2 @@
+alias gs=git status
+alias gch=git checkout
