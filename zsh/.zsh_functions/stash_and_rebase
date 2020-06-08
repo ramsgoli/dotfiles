@@ -1,14 +1,13 @@
-dirty=$(git diff --quiet)
+clean=$(git status --untracked-files=no --porcelain)
 
-if $dirty; then
+if [ ! -z "$clean" ]; then
 	echo "stashing unstaged changes"
 	git stash
 fi
 
 git fetch origin && git rebase origin/develop
-git stash pop
 
-if $dirty; then
+if [ ! -z "$clean" ]; then
 	echo "popping stashed changes"
 	git stash pop
 fi
