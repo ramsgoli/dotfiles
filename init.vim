@@ -45,18 +45,17 @@
 
 	" open NerdTree with <C-n>
 	nnoremap <C-n> :NERDTreeToggle<CR>
-
 	let NERDTreeMinimalUI = 1
 	let NERDTreeDirArrows = 1
 
 
 " General Editor Config
 
-	" In my ITerm perferences, I map <C-i> to <a-i> (esc i)
-	" This means that pressing <C-i> actually sends <a-i> to the neovim
-	" process
-	" So, I remap <a-i> back to <c-i> here
-	noremap <a-i> <C-i>
+	" In my alacritty perferences, I map <C-i> to !, since ! does nothing
+	" useful in normal mode
+	" This means that pressing <C-i> actually sends ! to the neovim process
+	" So, I remap ! back to <c-i> here
+	noremap ! <C-i>
 
 	" Remap leader key to ;
 	let g:mapleader=' '
@@ -83,7 +82,7 @@
 	set wildignore+=*/node_modules/*
 
 	" hit - to move the current line down by one
-	nnoremap - ddp
+	nnoremap - ddpV=
 
 	" edit init.vim in a vertical split
 	noremap <leader>ev :vsplit $MYVIMRC<cr>
@@ -104,9 +103,6 @@
 	nnoremap <silent> <Tab> :bn<CR>
 	nnoremap <silent> <S-Tab> :bp<CR>
 	nnoremap <silent> <C-c> :bp\|bd #<CR>
-
-	" Repeat last f/F/t/T search wih <CR>
-	nnoremap <CR> ;
 
 	" Show current file in NerdTree Menu
 	nnoremap <silent> <leader>sf :NERDTreeFind<CR>
