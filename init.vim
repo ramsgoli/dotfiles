@@ -16,7 +16,6 @@
 	Plug 'tpope/vim-fugitive'
 	Plug 'mhinz/vim-startify'
 	Plug 'justinmk/vim-sneak'
-	Plug 'dense-analysis/ale'
 
 	" Syntax highlighting for javascript/typescript
 	" Plug 'leafgarland/typescript-vim'
@@ -30,13 +29,6 @@
 
 " Startify
 	let g:startify_change_to_vcs_root = 1
-
-" Ale
-	let g:ale_fix_on_save = 1
-	let g:ale_fixers = {
-	\ 	'typescriptreact': ['prettier', 'eslint'],
-	\ 	'typescript': ['prettier', 'eslint'],
-	\}
 
 " FZF
 	" Allows options to be passed into :Rg command
@@ -245,7 +237,7 @@
 	nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 	" Remap for do codeAction of current line
-	nmap <leader>ac  <Plug>(coc-codeaction)
+	nmap <silent> <leader>ac  <Plug>(coc-codeaction)
 
 	" Create mappings for function text object, requires document symbols feature of languageserver.
 	xmap if <Plug>(coc-funcobj-i)
