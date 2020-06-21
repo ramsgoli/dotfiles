@@ -116,9 +116,6 @@
 " Theme
 	colorscheme gruvbox
 
-" Command-t
-	let g:CommandTCancelMap = ['<ESC>', '<C-c>']
-
 " Filetype
 
 	augroup filetype_vim
@@ -163,8 +160,6 @@
 	set shortmess+=F  " to get rid of the file name displayed in the command line bar
 
 " CO
-	" Flow support
-	let g:javascript_plugin_flow = 1
 	" disable vim-go :GoDef short cut (gd)
 	" this is handled by LanguageClient [LC]
 	let g:go_def_mapping_enabled = 0
@@ -182,8 +177,14 @@
 	" don't give |ins-completion-menu| messages.
 	set shortmess+=c
 
-	" always show signcolumns
-	set signcolumn=yes
+	" Always show the signcolumn, otherwise it would shift the text each time
+	" diagnostics appear/become resolved.
+	if has("patch-8.1.1564")
+		" Recently vim can merge signcolumn and number column into one
+		set signcolumn=number
+	else
+		set signcolumn=yes
+	endif
 
 	" Use tab for trigger completion with characters ahead and navigate.
 	" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
