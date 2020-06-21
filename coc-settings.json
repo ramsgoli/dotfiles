@@ -16,6 +16,5 @@
     "coc.preferences.hoverTarget": "echo",
     "signature.target": "echo",
     "javascript.suggestionActions.enabled": false,
-    "javascript.validate.enable": false,
-    "coc.preferences.jumpCommand": "CocSplitIfNotOpen"
+    "javascript.validate.enable": false
 }

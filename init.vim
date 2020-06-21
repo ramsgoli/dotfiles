@@ -93,10 +93,10 @@
 	" surround word in quotes (normal mode only)
 	nnoremap " i"<esc>ea"<esc>
 
-	" Open :GFiles (fzf) with ;f
+	" Open :GFiles (fzf) with <leader>f
 	nnoremap <leader>f :GFiles --cached --others --exclude-standard<CR>
 
-	" Disable highlight with ;<space>
+	" Disable highlight with <leader><space>
 	nnoremap <leader><space> :nohl<CR>
 
 	" Navigate buffers with <TAB> and <SHIFT TAB>
@@ -258,19 +258,3 @@
 	nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 	" Resume latest coc list
 	nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
-	function! SplitIfNotOpen(call, fname)
-	    let bufnum=bufnr(expand(a:fname))
-	    let winnum=bufwinnr(bufnum)
-	    if winnum != -1
-		" Jump to existing split
-		exe winnum . "wincmd w"
-	    else
-		" Make new split as usual
-		exe "vsplit " . a:fname
-	    endif
-	    " Execute the cursor movement command
-	    exe a:call
-	endfunction
-
-	command! -nargs=+ CocSplitIfNotOpen :call SplitIfNotOpen(<f-args>)
