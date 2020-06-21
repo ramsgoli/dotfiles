@@ -128,9 +128,6 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 export NODE_ENV=dev
 eval "$(direnv hook zsh)"  # If you use Zsh
-export PGHOST=localhost
-export PGUSER=heap
-export PGDATABASE=heap
 
 _git_checkout ()
 {
