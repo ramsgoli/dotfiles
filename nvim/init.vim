@@ -17,6 +17,11 @@
 	Plug 'mhinz/vim-startify'
 	Plug 'justinmk/vim-sneak'
 
+	" These next two are both for ranger
+	Plug 'francoiscabrol/ranger.vim'
+	Plug 'rbgrouleff/bclose.vim'
+
+
 	" Syntax highlighting for javascript/typescript
 	" Plug 'leafgarland/typescript-vim'
 	" Plug 'pangloss/vim-javascript'
@@ -51,6 +56,7 @@
 
 " General Editor Config
 
+	" By default, Ctrl-i has the same unicode as ESC, so pressing
 	" In my alacritty perferences, I map <C-i> to !, since ! does nothing
 	" useful in normal mode
 	" This means that pressing <C-i> actually sends ! to the neovim process
@@ -113,11 +119,17 @@
 
 	command! GrepCurrentFileName call GrepCurrentFileName()
 
+	command! Refresh execute "bufdo e|syntax on"
+
 " Theme
 	colorscheme gruvbox
 
 " Command-t
 	let g:CommandTCancelMap = ['<ESC>', '<C-c>']
+
+" Ranger
+	let g:ranger_map_keys = 0
+	nnoremap <leader>g :Ranger<CR>
 
 " Filetype
 
@@ -203,8 +215,6 @@
 
 	" Remap keys for gotos
 	nmap <silent> gd <Plug>(coc-definition)
-	nmap <silent> gy <Plug>(coc-type-definition)
-	nmap <silent> gi <Plug>(coc-implementation)
 	nmap <silent> gr <Plug>(coc-references)
 
 	" Use K to show documentation in preview window
