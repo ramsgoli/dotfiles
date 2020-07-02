@@ -158,3 +158,15 @@ _git_checkout ()
 }
 fpath=(${ZDOTDIR}/.zsh_functions $fpath);
 autoload -U $fpath[1]/*(.:t)
+
+se () {
+    if [ $(ps aux | grep nodemon | grep -v grep | awk '{print $2}' | wc -l) -gt 0 ]; then
+        ps aux | grep nodemon | grep -v grep | awk '{print $2}' | xargs kill -9
+    fi
+    if [ "$(lsof -ti :5000)" != "" ]; then
+        kill -9 $(lsof -ti :5000)
+    fi
+    npm run start:app
+}
+
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
