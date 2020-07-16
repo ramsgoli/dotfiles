@@ -13,8 +13,8 @@
             ]
         }
     },
-    "coc.preferences.hoverTarget": "echo",
-    "signature.target": "echo",
+    "coc.preferences.hoverTarget": "float",
     "javascript.suggestionActions.enabled": false,
-    "javascript.validate.enable": false
+    "javascript.validate.enable": false,
+    "eslint.autoFixOnSave": true
 }

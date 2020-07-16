@@ -494,6 +494,8 @@ background_opacity: 1.0
 # at once.
 key_bindings:
   - { key: I,         mods: Control,   chars: "\x21"          }
+  - { key: Left, mods: Control, chars: "\x1bb" }
+  - { key: Right, mods: Control, chars: "\x1bf" }
   #- { key: Paste,                                action: Paste          }
   #- { key: Copy,                                 action: Copy           }
   #- { key: L,         mods: Control,             action: ClearLogNotice }

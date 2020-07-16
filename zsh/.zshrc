@@ -170,3 +170,6 @@ se () {
 }
 
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
+
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word

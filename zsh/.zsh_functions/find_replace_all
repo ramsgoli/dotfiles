@@ -1,0 +1,9 @@
+find_replace_all() {
+	OLD=$1
+	NEW=$2
+
+	echo "HERE"
+	echo "$OLD"
+	echo "$NEW"
+	rg '"$OLD"' -l | xargs sed -i '' -e 's/"$OLD"/"$NEW"/g'
+}

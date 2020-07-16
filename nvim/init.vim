@@ -1,9 +1,6 @@
 " Plugins
 	call plug#begin('~/.local/share/nvim/plugged')
-	Plug 'joshdick/onedark.vim'
-	Plug 'tomasiser/vim-code-dark'
 	Plug 'morhetz/gruvbox'
-	Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 	Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 	Plug 'vimlab/split-term.vim'
 	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -103,7 +100,7 @@
 	nnoremap <leader>f :GFiles --cached --others --exclude-standard<CR>
 
 	" Disable highlight with <leader><space>
-	nnoremap <leader><space> :nohl<CR>
+	nnoremap <leader>l :nohl<CR>
 
 	" Navigate buffers with <TAB> and <SHIFT TAB>
 	nnoremap <silent> <Tab> :bn<CR>
@@ -119,7 +116,9 @@
 
 	command! GrepCurrentFileName call GrepCurrentFileName()
 
-	command! Refresh execute "bufdo e|syntax on"
+	command! Refresh execute 'bufdo :e' | syntax on
+	noremap <leader>da :%bd\|e#\|bd#<cr>\|'"
+
 
 " Theme
 	colorscheme gruvbox
@@ -171,7 +170,6 @@
 	let g:airline_section_y = ''
 	let g:airline_theme='gruvbox'
 	set noshowmode  " to get rid of thing like --INSERT--
-	set noshowcmd  " to get rid of display of last command
 	set shortmess+=F  " to get rid of the file name displayed in the command line bar
 
 " CO
