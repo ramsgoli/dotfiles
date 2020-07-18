@@ -132,32 +132,12 @@
 
 " Filetype
 
-	augroup filetype_vim
-		autocmd FileType vim setlocal foldmethod=marker
-	augroup END
-
-	augroup filetype_html
-		autocmd FileType html setlocal ts=2 sts=2 sw=2
-	augroup END
-
 	augroup filetype_css
 		autocmd BufRead,BufNewFile *.css,*.scss setlocal ts=2 sts=2 sw=2
 	augroup END
 
 	augroup filetype_javascript
 		autocmd FileType javascript setlocal ts=2 sts=2 sw=2 smarttab expandtab
-	augroup END
-
-	augroup filetype_typescript
-		autocmd FileType typescript setlocal ts=2 sts=2 sw=2 smarttab expandtab colorcolumn=140
-	augroup END
-
-	augroup filetype_tsx
-		autocmd FileType typescriptreact setlocal ts=2 sts=2 sw=2 smarttab expandtab colorcolumn=140
-	augroup END
-
-	augroup filetype_java
-		autocmd FileType java setlocal ts=4 sts=4 sw=4 smarttab expandtab
 	augroup END
 
 	augroup filetype_pug

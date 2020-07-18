@@ -87,27 +87,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Path to my own personal binaries
-export PATH=$PATH:${HOME}/bin
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '${HOME}/google-cloud-sdk/path.zsh.inc' ]; then source '${HOME}/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '${HOME}/google-cloud-sdk/completion.zsh.inc' ]; then source '${HOME}/google-cloud-sdk/completion.zsh.inc'; fi
-
-# Path to node binaries
-export PATH=$PATH:/usr/local/bin/node
-export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
-
-# source git scripts
-if [[ -f ~/git_scripts.sh ]] then
-	source ~/git_scripts.sh
-fi
-
-# Go path (yeah I know its the default path, but just to be explicit"
-export GOPATH=~/go
-export PATH=$PATH:$(go env GOPATH)/bin
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -115,13 +99,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # initialize pyenv
-export PATH="/Users/ramsgoli/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 # jenv
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
-export PATH="$HOME/.jenv/shims:$PATH"
 
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
