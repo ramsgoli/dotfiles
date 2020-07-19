@@ -84,7 +84,7 @@ noremap <C-k> <C-w>k
 noremap <leader>ev :vsplit $MYVIMRC<cr>
 noremap <leader>sv :source ~/.config/nvim/init.vim<CR>
 
-nnoremap <leader>f :GFiles --cached --others --exclude-standard<CR> 
+nnoremap <leader>f :GFiles --cached --others --exclude-standard<CR>
 
 nnoremap <silent> <Tab> :bn<CR>
 nnoremap <silent> <S-Tab> :bp<CR>
