@@ -22,7 +22,9 @@
 	call plug#end()
 " }}}
 
-" Indentation Options {{{
+let g:mapleader=' '
+
+" Default Indentation Options {{{
 set autoindent
 set tabstop=2
 set shiftwidth=2
@@ -34,6 +36,7 @@ set expandtab
 set ignorecase " ignore case when searching
 set smartcase " unless the search query contains a capital letter
 nnoremap <leader>l :nohl<CR>
+set wildignore+=*/node_modules/*
 " }}}
 
 " User Interface {{{
@@ -57,6 +60,16 @@ if has("patch-8.1.1564")
 else
 	set signcolumn=yes
 endif
+" }}}
+
+" General Config {{{
+set hidden " hide buffers when navigating to different files
+set nobackup " Some servers have issues with backup files, see #649
+set autoread " Re-read file if it changes outside of vim
+set nowritebackup
+set updatetime=50
+set shell=/bin/zsh
+command! Refresh execute 'bufdo :e' | syntax enable
 " }}}
 
 " Key Mappings {{{
@@ -97,24 +110,5 @@ command! -bang -nargs=* Rg
 	\           : fzf#vim#with_preview('right:50%:hidden', '?'),
 	\   <bang>0)
 
-
-let g:mapleader=' '
 let g:ranger_map_keys = 0
-
-set shell=/bin/zsh
-set autoread " Re-read file if it changes outside of vim
-set wildignore+=*/node_modules/*
-
-command! Refresh execute 'bufdo :e' | syntax enable
-
-" if hidden is not set, TextEdit might fail.
-set hidden
-
-" Some servers have issues with backup files, see #649
-set nobackup
-set nowritebackup
-
-set updatetime=50
-
-
-
+let g:startify_change_to_vcs_root = 1
