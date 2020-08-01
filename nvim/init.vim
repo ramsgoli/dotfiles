@@ -13,6 +13,7 @@
 	Plug 'tpope/vim-fugitive'
 	Plug 'mhinz/vim-startify'
 	Plug 'justinmk/vim-sneak'
+  Plug 'tpope/vim-surround'
 
 	" These next two are both for ranger
 	Plug 'francoiscabrol/ranger.vim'
@@ -22,7 +23,30 @@
 	call plug#end()
 " }}}
 
+" General Config {{{
 let g:mapleader=' '
+set hidden " hide buffers when navigating to different files
+set nobackup " Some servers have issues with backup files, see #649
+set autoread " Re-read file if it changes outside of vim
+set nowritebackup
+set updatetime=50
+set shell=/bin/zsh
+command! Refresh execute 'bufdo :e' | syntax enable
+
+" Allows options to be passed into :Rg command
+command! -bang -nargs=* Rg
+	\ call fzf#vim#grep(
+	\   'rg --column --line-number --no-heading --color=always '
+	\  . (len(<q-args>) > 0 ? <q-args> : '""'), 1,
+	\   <bang>0 ? fzf#vim#with_preview('up:60%')
+	\           : fzf#vim#with_preview('right:50%:hidden', '?'),
+	\   <bang>0)
+" }}}
+
+" Plugin Config {{{
+source $HOME/.config/nvim/plugin-config/ranger.vim
+source $HOME/.config/nvim/plugin-config/startify.vim
+" }}}
 
 " Default Indentation Options {{{
 set autoindent
@@ -44,8 +68,7 @@ set splitright
 set number relativenumber
 set nowrap
 colorscheme gruvbox
-set shortmess+=F  " to get rid of the file name displayed in the command line bar
-set shortmess+=c " don't give |ins-completion-menu| messages.
+set shortmess+=c
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 0
 let g:airline_section_y = ''
@@ -54,22 +77,7 @@ set noshowmode  " to get rid of vanilla vim modes
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
-if has("patch-8.1.1564")
-	" Recently vim can merge signcolumn and number column into one
-	set signcolumn=number
-else
-	set signcolumn=yes
-endif
-" }}}
-
-" General Config {{{
-set hidden " hide buffers when navigating to different files
-set nobackup " Some servers have issues with backup files, see #649
-set autoread " Re-read file if it changes outside of vim
-set nowritebackup
-set updatetime=50
-set shell=/bin/zsh
-command! Refresh execute 'bufdo :e' | syntax enable
+set signcolumn=yes
 " }}}
 
 " Key Mappings {{{
@@ -93,6 +101,8 @@ nnoremap <silent> <C-c> :bp\|bd #<CR>
 " delete all buffers except the current one
 noremap <leader>da :%bd\|e#\|bd#<cr>\|'"
 
+nnoremap <leader>b :Gblame<CR>
+
 " By default, Ctrl-i has the same unicode as ESC, so pressing
 " In my alacritty perferences, I map <C-i> to !, since ! does nothing
 " useful in normal mode
@@ -100,15 +110,3 @@ noremap <leader>da :%bd\|e#\|bd#<cr>\|'"
 " So, I remap ! back to <c-i> here
 noremap ! <C-i>
 " }}}
-
-" Allows options to be passed into :Rg command
-command! -bang -nargs=* Rg
-	\ call fzf#vim#grep(
-	\   'rg --column --line-number --no-heading --color=always '
-	\  . (len(<q-args>) > 0 ? <q-args> : '""'), 1,
-	\   <bang>0 ? fzf#vim#with_preview('up:60%')
-	\           : fzf#vim#with_preview('right:50%:hidden', '?'),
-	\   <bang>0)
-
-let g:ranger_map_keys = 0
-let g:startify_change_to_vcs_root = 1
