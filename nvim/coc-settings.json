@@ -16,5 +16,6 @@
     "coc.preferences.hoverTarget": "float",
     "javascript.suggestionActions.enabled": false,
     "javascript.validate.enable": false,
-    "eslint.autoFixOnSave": true
+    "eslint.autoFixOnSave": true,
+    "tsserver.maxTsServerMemory": 8096
 }

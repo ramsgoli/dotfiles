@@ -14,6 +14,7 @@
 	Plug 'mhinz/vim-startify'
 	Plug 'justinmk/vim-sneak'
   Plug 'tpope/vim-surround'
+  Plug 'mhinz/vim-signify'
 
 	" These next two are both for ranger
 	Plug 'francoiscabrol/ranger.vim'
@@ -61,6 +62,11 @@ set ignorecase " ignore case when searching
 set smartcase " unless the search query contains a capital letter
 nnoremap <leader>l :nohl<CR>
 set wildignore+=*/node_modules/*
+
+" Keep search results in center of screen
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
 " }}}
 
 " User Interface {{{
@@ -101,7 +107,7 @@ nnoremap <silent> <C-c> :bp\|bd #<CR>
 " delete all buffers except the current one
 noremap <leader>da :%bd\|e#\|bd#<cr>\|'"
 
-nnoremap <leader>b :Gblame<CR>
+nnoremap <leader>gb :Gblame<CR>
 
 " By default, Ctrl-i has the same unicode as ESC, so pressing
 " In my alacritty perferences, I map <C-i> to !, since ! does nothing
@@ -109,4 +115,38 @@ nnoremap <leader>b :Gblame<CR>
 " This means that pressing <C-i> actually sends ! to the neovim process
 " So, I remap ! back to <c-i> here
 noremap ! <C-i>
+" }}}
+
+" FZF Floating Window {{{
+function! FloatingFZF()
+  let buf = nvim_create_buf(v:false, v:true)
+
+  " here be dragoons
+  let width = float2nr(&columns * 0.9)
+	let height = float2nr(&lines * 0.6)
+  let horizontal = float2nr((&columns - width) / 2)
+  let vertical = 1
+  let opts = {
+        \ 'relative': 'editor',
+        \ 'row': vertical,
+        \ 'col': horizontal,
+        \ 'width': width,
+        \ 'height': height / 2,
+        \ 'style': 'minimal'
+        \ }
+
+  let win = nvim_open_win(buf, v:true, opts)
+  call setwinvar(win, '&winhl', 'NormalFloat:TabLine')
+
+  " this is to remove all line numbers and so on from the window
+  setlocal
+        \ buftype=nofile
+        \ nobuflisted
+        \ bufhidden=hide
+        \ nonumber
+        \ norelativenumber
+        \ signcolumn=no
+endfunction
+
+let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 " }}}
