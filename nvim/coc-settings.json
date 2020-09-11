@@ -17,5 +17,6 @@
     "javascript.suggestionActions.enabled": false,
     "javascript.validate.enable": false,
     "eslint.autoFixOnSave": true,
-    "tsserver.maxTsServerMemory": 8096
+    "tsserver.maxTsServerMemory": 8096,
+    "rust.wait_to_build": 5
 }
