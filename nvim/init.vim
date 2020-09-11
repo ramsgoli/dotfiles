@@ -1,27 +1,28 @@
 " Plugins {{{
-	call plug#begin('~/.local/share/nvim/plugged')
-	Plug 'morhetz/gruvbox'
-	Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
-	Plug 'vimlab/split-term.vim'
-	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-	Plug 'junegunn/fzf.vim'
-	Plug 'jiangmiao/auto-pairs'
-	Plug 'digitaltoad/vim-pug'
-	Plug 'vim-airline/vim-airline'
-	Plug 'vim-airline/vim-airline-themes'
-	Plug 'sgur/vim-editorconfig'
-	Plug 'tpope/vim-fugitive'
-	Plug 'mhinz/vim-startify'
-	Plug 'justinmk/vim-sneak'
-  Plug 'tpope/vim-surround'
-  Plug 'mhinz/vim-signify'
+call plug#begin('~/.local/share/nvim/plugged')
+Plug 'morhetz/gruvbox'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+Plug 'vimlab/split-term.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'digitaltoad/vim-pug'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'sgur/vim-editorconfig'
+Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-startify'
+Plug 'justinmk/vim-sneak'
+Plug 'tpope/vim-surround'
+Plug 'mhinz/vim-signify'
+Plug 'jeetsukumaran/vim-buffergator'
 
-	" These next two are both for ranger
-	Plug 'francoiscabrol/ranger.vim'
-	Plug 'rbgrouleff/bclose.vim'
+" These next two are both for ranger
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
 
-	Plug 'sheerun/vim-polyglot'  " Language pack
-	call plug#end()
+Plug 'sheerun/vim-polyglot'  " Language pack
+call plug#end()
 " }}}
 
 " General Config {{{
