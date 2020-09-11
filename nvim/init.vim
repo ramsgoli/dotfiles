@@ -74,6 +74,14 @@ nnoremap * *zz
 set splitright
 set number relativenumber
 set nowrap
+augroup colorgroup
+  autocmd!
+  autocmd ColorScheme gruvbox highlight clear SignColumn
+  autocmd ColorScheme gruvbox highlight SignifySignAdd ctermfg=green cterm=NONE
+  autocmd ColorScheme gruvbox highlight SignifySignDelete ctermfg=red cterm=NONE
+  autocmd ColorScheme gruvbox highlight SignifySignChange ctermfg=blue cterm=NONE
+augroup END
+
 colorscheme gruvbox
 set shortmess+=c
 let g:airline#extensions#tabline#enabled = 1
