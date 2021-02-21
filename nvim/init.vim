@@ -6,22 +6,17 @@ Plug 'vimlab/split-term.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'digitaltoad/vim-pug'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'sgur/vim-editorconfig'
 Plug 'tpope/vim-fugitive'
-Plug 'mhinz/vim-startify'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-surround'
 Plug 'mhinz/vim-signify'
 Plug 'jeetsukumaran/vim-buffergator'
-
-" These next two are both for ranger
-Plug 'francoiscabrol/ranger.vim'
-Plug 'rbgrouleff/bclose.vim'
-
 Plug 'sheerun/vim-polyglot'  " Language pack
+
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'kyazdani42/nvim-tree.lua'
 call plug#end()
 " }}}
 
@@ -43,11 +38,6 @@ command! -bang -nargs=* Rg
 	\   <bang>0 ? fzf#vim#with_preview('up:60%')
 	\           : fzf#vim#with_preview('right:50%:hidden', '?'),
 	\   <bang>0)
-" }}}
-
-" Plugin Config {{{
-source $HOME/.config/nvim/plugin-config/ranger.vim
-source $HOME/.config/nvim/plugin-config/startify.vim
 " }}}
 
 " Default Indentation Options {{{
@@ -158,4 +148,8 @@ function! FloatingFZF()
 endfunction
 
 let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+" }}}
+
+" Prettier {{{
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " }}}
