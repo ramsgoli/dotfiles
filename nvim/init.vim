@@ -1,6 +1,5 @@
 " Plugins {{{
 call plug#begin('~/.local/share/nvim/plugged')
-<<<<<<< HEAD
 call plug#end()
 " }}}
 
