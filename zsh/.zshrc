@@ -93,63 +93,14 @@ if [ -f '${HOME}/google-cloud-sdk/path.zsh.inc' ]; then source '${HOME}/google-c
 # The next line enables shell command completion for gcloud.
 if [ -f '${HOME}/google-cloud-sdk/completion.zsh.inc' ]; then source '${HOME}/google-cloud-sdk/completion.zsh.inc'; fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # initialize pyenv
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-# jenv
-if which jenv > /dev/null; then eval "$(jenv init -)"; fi
-
-# rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-export NODE_ENV=dev
-eval "$(direnv hook zsh)"  # If you use Zsh
-
-_git_checkout ()
-{
-	__git_has_doubledash && return
-
-	case "$cur" in
-	--conflict=*)
-		__gitcomp "diff3 merge" "" "${cur##--conflict=}"
-		;;
-	--*)
-		__gitcomp_builtin checkout
-		;;
-	*)
-		# check if --track, --no-track, or --no-guess was specified
-		# if so, disable DWIM mode
-		local flags="--track --no-track --no-guess" track_opt="--track"
-		if [ "$GIT_COMPLETION_CHECKOUT_NO_GUESS" = "1" ] ||
-		   [ -n "$(__git_find_on_cmdline "$flags")" ]; then
-			track_opt=''
-		fi
-		if [ "$command" = "checkoutr" ]; then
-		    __git_complete_refs $track_opt
-		else
-		    __gitcomp_direct "$(__git_heads "" "$cur" " ")"
-		fi
-		;;
-	esac
-}
 fpath=(${ZDOTDIR}/.zsh_functions $fpath);
 autoload -U $fpath[1]/*(.:t)
-
-se () {
-    if [ $(ps aux | grep nodemon | grep -v grep | awk '{print $2}' | wc -l) -gt 0 ]; then
-        ps aux | grep nodemon | grep -v grep | awk '{print $2}' | xargs kill -9
-    fi
-    if [ "$(lsof -ti :5000)" != "" ]; then
-        kill -9 $(lsof -ti :5000)
-    fi
-    npm run start:app
-}
 
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
 
