@@ -1,0 +1,17 @@
+psql_local() {
+  echo "Running psql -h localhost -p $1 -U postgres -d heap";
+  psql -h localhost -p $1 -U heap -d heap;
+}
+alias reference-db='psql_local 5433'
+alias citus-coord-db='psql_local 7000'
+alias citus-worker-1='psql_local 7001'
+alias citus-worker-2='psql_local 7002'
+alias integration-db='psql_local 4432'
+alias metadata-db='psql_local 7432'
+alias perf-db='psql_local 8432'
+alias users-db='psql_local 6432'
+
+eval "$(direnv hook zsh)"
+
+export ONELOGIN_CLIENT_ID=49c0790f16710b82cb141bda1bcffa807bf27026bb81daadf32b3978702c00d0
+export ONELOGIN_CLIENT_SECRET=0486d8f777892d5e558166d737b839476ae91c4f1bef4da4667cae888c223e0e

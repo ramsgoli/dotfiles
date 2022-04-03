@@ -107,22 +107,7 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 
-psql_local() {
-  echo "Running psql -h localhost -p $1 -U postgres -d heap";
-  psql -h localhost -p $1 -U postgres -d heap;
-}
-alias reference-db='psql_local 5433'
-alias citus-coord-db='psql_local 7000'
-alias citus-worker-1='psql_local 7001'
-alias citus-worker-2='psql_local 7002'
-alias integration-db='psql_local 4432'
-alias metadata-db='psql_local 7432'
-alias perf-db='psql_local 8432'
-alias users-db='psql_local 6432'
+export EDITOR=nvim
 
-ms_to_date() {
-  date -r $(($1 / 1000))
-}
-
-export HBASE_HOME=~/hbase-2.3.4
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-8.jdk/Contents/Home
+# source work-specific file if work laptop
+[[ $(hostname -s) == 'rams-work-mbp' ]] && source ${ZDOTDIR}/.zshrc_for_work
