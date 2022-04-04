@@ -7,6 +7,7 @@ lua require('user.telescope')
 lua require('user.cmp')
 lua require('user.lsp')
 lua require('user.colors')
+lua require('user.nvimtree')
 "}}}
 
 " General Config {{{

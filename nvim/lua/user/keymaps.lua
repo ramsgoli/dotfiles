@@ -33,6 +33,9 @@ keymap("n", "<leader>l", ":nohl<CR>", opts)
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
+-- NvimTree
+keymap("n", "<leader>n", ":NvimTreeToggle<CR>", opts)
+
 -- By default, Ctrl-i has the same unicode as ESC, so pressing Ctrl-i will send an escape sequence to the nvim process.
 -- In my alacritty perferences, I map <C-i> to !, since ! does nothing
 -- useful in normal mode
