@@ -14,6 +14,12 @@ set_option("symlink_arrow", '>> ') --  defaults to ' ➛ '. used as a separator 
 set_option("respect_buf_cwd", 1) -- 0 by default, will change cwd of nvim-tree to that of new buffer's when opening nvim-tree.
 set_option("create_in_closed_folder", 1)  -- 0 by default, When creating files, sets the path of a file when cursor is on a closed folder to the parent folder when 0, and inside the folder when 1.
 
+-- Automatically close NvimTree if it's the last split
+-- :TODO: doesn't work if you open file via Telescope find_files for some reason
+-- vim.cmd([[
+  -- autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
+-- ]])
+
 vim.cmd([[
 let g:nvim_tree_show_icons = {
     \ 'git': 1,
@@ -55,3 +61,5 @@ require('nvim-tree').setup {
     },
   },
 }
+
+return M

@@ -1,5 +1,5 @@
 start:debug() {
-  HOSTNAME=$(hostname -s)
+  HOSTNAME=$(hostname)
   if [[ $HOSTNAME != "rams-work-mbp" ]]; then
     echo "Not your work laptop. WTF?"
     return

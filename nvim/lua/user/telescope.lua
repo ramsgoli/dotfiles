@@ -16,6 +16,7 @@ telescope.setup {
     mappings = {
       i = {
         ["<C-e>"] = actions.close,
+        ["<C-q>"] = actions.smart_add_to_qflist + actions.open_qflist,
       },
     },
   },

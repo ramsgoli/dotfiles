@@ -41,6 +41,7 @@ M.setup = function()
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
     border = "rounded",
   })
+
 end
 
 local function lsp_highlight_document(client)
@@ -54,6 +55,20 @@ local function lsp_highlight_document(client)
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
     ]],
+      false
+    )
+  end
+end
+
+local function lsp_format_document(client)
+  if client.resolved_capabilities.document_highlight then
+    vim.api.nvim_exec(
+      [[
+      augroup lsp_format_document
+        autocmd! * <buffer>
+        autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+      augroup end
+      ]],
       false
     )
   end
@@ -86,8 +101,13 @@ M.on_attach = function(client, bufnr)
   if client.name == "tsserver" then
     client.resolved_capabilities.document_formatting = false
   end
+
+  if client.name == "eslint" then
+    client.resolved_capabilities.document_formatting = true
+  end
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
+  lsp_format_document(client)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

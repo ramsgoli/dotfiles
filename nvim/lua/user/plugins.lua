@@ -62,6 +62,9 @@ return packer.startup(function(use)
   use 'neovim/nvim-lspconfig' -- barebones LSP config (core neovim)
   use 'williamboman/nvim-lsp-installer' -- Manages installation of various language servers
 
+  -- with signatures
+  use 'ray-x/lsp_signature.nvim'
+
   -- Colors
   use 'lunarvim/colorschemes'
   use 'folke/tokyonight.nvim'
@@ -72,7 +75,16 @@ return packer.startup(function(use)
     requires = {
       'kyazdani42/nvim-web-devicons', -- optional, for file icon
     },
-}
+  }
+
+  -- lualine
+  use 'nvim-lualine/lualine.nvim'
+
+  -- Gitsigns
+  use 'lewis6991/gitsigns.nvim'
+
+  -- Indent blanklines
+  use 'lukas-reineke/indent-blankline.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
