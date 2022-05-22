@@ -53,3 +53,5 @@ keymap("n", "ca", "<CMD>lua vim.lsp.buf.code_action()<CR>", opts)
 -- Gitsigns
 keymap("n", "gb", "<CMD>Gitsigns blame_line<CR>", opts)
 
+-- quickfix list
+keymap("n", "<leader>cl", "<CMD>ccl<CR>", opts);

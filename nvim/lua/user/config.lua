@@ -20,3 +20,4 @@ vim.opt.background = 'dark'
 
 -- commands provided by lsp
 vim.cmd [[ command! Rename execute 'lua vim.lsp.buf.rename()' ]]
+vim.cmd [[ command! BufOnly silent execute "%bd | e# | bd#" ]]

@@ -3,7 +3,7 @@ local function set_option(name, value)
   vim.api.nvim_set_var(full_option_name, value)
 end
 
-set_option("indent_markers", 1) -- 0 by default, this option shows indent markers when folders are open
+vim.api.nvim_set_var("renderer.indent_markers.enable", 1)
 set_option("git_hl", 1) -- 0 by default, will enable file highlight for git attributes (can be used without the icons).
 set_option("highlight_opened_files", 1) -- 0 by default, will enable folder and file icon highlight for opened files/directories.
 set_option("root_folder_modifier", ':~') -- This is the default. See :help filename-modifiers for more options
@@ -54,6 +54,8 @@ let g:nvim_tree_icons = {
     \ }
 ]])
 
+vim.api.nvim_create_user_command('Find', 'NvimTreeFindFile', {nargs = 0})
+
 require('nvim-tree').setup {
   actions = {
     open_file = {
@@ -61,5 +63,3 @@ require('nvim-tree').setup {
     },
   },
 }
-
-return M

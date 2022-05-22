@@ -19,5 +19,10 @@ lsp_installer.on_server_ready(function(server)
     opts = vim.tbl_deep_extend('force', eslint_opts, opts)
   end
 
+  if server.name == "tsserver" then
+    local eslint_opts = require('user.lsp.settings.tsserver')
+    opts = vim.tbl_deep_extend('force', eslint_opts, opts)
+  end
+
   server:setup(opts)
 end)

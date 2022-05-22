@@ -7,32 +7,37 @@ echo "============================"
 
 currDir=$(pwd)
 
-read -p "Installing homebrew. Press y to continue or any other key to skip. " ANS
-if [[ $ANS = y ]]
-then
+# check if Homebrew installed
+echo "Checking if Homebrew is installed..."
+which -s brew
+if [[ $? != 0 ]]; then
+  echo "Homebrew not found. Installing..."
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-	echo "done"
+else
+  echo "Found Homebrew."
 fi
 
-read -p "Installing neovim. Press y to continue or any other key to skip. " ANS
-if [[ $ANS = y ]]
-then
+echo "Checking if Neovim is installed..."
+which -s nvim
+if [[ $? != 0 ]]; then
+  echo "Neovim not found. Installing..."
 	brew install neovim
-	echo "done"
+else
+  echo "Found Neovim."
 fi
 
-echo "Linking neovim's config file to ./init.vim..."
-if [ -e ~/.config/nvim/init.vim ]
+echo "Linking Neovim config file..."
+if [[ -d ~/.config/nvim ]]
 then
-	read -p "Found an existing ~/.config/nvim/init.vim file. Would you like to override it? [y|n]" ANSWER
-	if [ $ANSWER = y ]
+	read -p "Found an existing Neovim config at ~/.config/nvim. Would you like to override it? [y|n]" ANSWER
+	if [[ $ANSWER = y ]]
 	then
-		rm ~/.config/nvim/init.vim
-		ln -s ${currDir}/init.vim ~/.config/nvim/init.vim 
+		rm -rf ~/.config/nvim
+		ln -s ${currDir} ~/.config/nvim
 	fi
 else
 	mkdir -p ~/.config/nvim
-	ln -s ${currDir}/init.vim ~/.config/nvim/init.vim 
+	ln -s ${currDir} ~/.config/nvim
 fi
 echo "done"
 
@@ -67,13 +72,6 @@ fi
 echo "now sourcing it..."
 source ~/.zshrc
 echo "done"
-
-echo "Installing NVM, a version manager for node"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-source ~/.zshrc
-
-echo "Installing the latest version of node"
-nvm install node
 
 echo "Installing golang"
 brew install go

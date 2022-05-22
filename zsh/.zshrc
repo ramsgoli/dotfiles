@@ -102,6 +102,7 @@ eval "$(pyenv virtualenv-init -)"
 fpath=(${ZDOTDIR}/.zsh_functions $fpath);
 autoload -U $fpath[1]/*(.:t)
 
+export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
 
 bindkey "^[[1;3C" forward-word

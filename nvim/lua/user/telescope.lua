@@ -9,6 +9,10 @@ if not actions_ok then
   return
 end
 
+vim.cmd[[
+  command! Buffers execute 'Telescope buffers'
+]]
+
 telescope.setup {
   defaults = {
     prompt_prefix = ' ',
