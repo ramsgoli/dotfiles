@@ -105,8 +105,8 @@ autoload -U $fpath[1]/*(.:t)
 export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
 
-bindkey "^[[1;3C" forward-word
-bindkey "^[[1;3D" backward-word
+bindkey "^[[1;2C" forward-word
+bindkey "^[[1;2D" backward-word
 
 export EDITOR=nvim
 

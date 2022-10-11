@@ -47,9 +47,6 @@ keymap("", "!", "<C-i>", opts)
 keymap("n", "<leader>f", "<CMD>Telescope find_files<CR>", opts)
 keymap("n", "<leader>g", "<CMD>Telescope live_grep<CR>", opts)
 
--- lsp
-keymap("n", "ca", "<CMD>lua vim.lsp.buf.code_action()<CR>", opts)
-
 -- Gitsigns
 keymap("n", "gb", "<CMD>Gitsigns blame_line<CR>", opts)
 

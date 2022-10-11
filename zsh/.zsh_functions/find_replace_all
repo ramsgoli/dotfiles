@@ -5,5 +5,6 @@ find_replace_all() {
 	echo "HERE"
 	echo "$OLD"
 	echo "$NEW"
+  echo "Files found:"
 	rg '"$OLD"' -l | xargs sed -i '' -e 's/"$OLD"/"$NEW"/g'
 }

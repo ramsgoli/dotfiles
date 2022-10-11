@@ -12,6 +12,7 @@ alias perf-db='psql_local 8432'
 alias users-db='psql_local 6432'
 
 eval "$(direnv hook zsh)"
+eval $(thefuck --alias)
 
 export ONELOGIN_CLIENT_ID=49c0790f16710b82cb141bda1bcffa807bf27026bb81daadf32b3978702c00d0
 export ONELOGIN_CLIENT_SECRET=0486d8f777892d5e558166d737b839476ae91c4f1bef4da4667cae888c223e0e

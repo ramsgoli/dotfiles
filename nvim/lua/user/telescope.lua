@@ -13,6 +13,10 @@ vim.cmd[[
   command! Buffers execute 'Telescope buffers'
 ]]
 
+vim.cmd[[
+  command! Symbols execute 'Telescope lsp_dynamic_workspace_symbols'
+]]
+
 telescope.setup {
   defaults = {
     prompt_prefix = ' ',

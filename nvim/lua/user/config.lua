@@ -18,6 +18,11 @@ vim.opt.signcolumn = 'yes'
 vim.opt.termguicolors = true
 vim.opt.background = 'dark'
 
+-- folding
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldenable = false
+
 -- commands provided by lsp
 vim.cmd [[ command! Rename execute 'lua vim.lsp.buf.rename()' ]]
 vim.cmd [[ command! BufOnly silent execute "%bd | e# | bd#" ]]
