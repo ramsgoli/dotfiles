@@ -60,7 +60,8 @@ return packer.startup(function(use)
 
   -- LSP
   use 'neovim/nvim-lspconfig' -- barebones LSP config (core neovim)
-  use 'williamboman/nvim-lsp-installer' -- Manages installation of various language servers
+  use 'williamboman/mason.nvim' -- Manages installation of various language servers
+  use 'williamboman/mason-lspconfig.nvim'
 
   -- with signatures
   use 'ray-x/lsp_signature.nvim'
@@ -90,7 +91,9 @@ return packer.startup(function(use)
   use 'windwp/nvim-autopairs'
 
   -- custom plugins
-  use '~/my_neovim_plugins/compileroo'
+  -- use '~/my_neovim_plugins/compileroo'
+
+  use 'jose-elias-alvarez/typescript.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
