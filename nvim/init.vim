@@ -13,6 +13,7 @@ lua require('user.lualine')
 lua require('user.gitsigns')
 lua require('user.indent_blankline')
 lua require('user.autopairs')
+lua require('user.commands')
 "}}}
 
 " General Config {{{
