@@ -1,28 +1,32 @@
-local status_ok, lsp_installer = pcall(require, 'nvim-lsp-installer')
+local status_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
 if not status_ok then
-  return
+    return
 end
 
-lsp_installer.on_server_ready(function(server)
-  local opts = {
-    on_attach = require('user.lsp.handlers').on_attach,
-    capabilities = require('user.lsp.handlers').capabilities,
-  }
+local mason = require("mason")
+local lspconfig = require("lspconfig")
 
-  if server.name == 'sumneko_lua' then
-    local sumneko_opts = require('user.lsp.settings.sumneko_lua')
-    opts = vim.tbl_deep_extend('force', sumneko_opts, opts)
-  end
+local servers = {"sumneko_lua", "tsserver" }
 
-  if server.name == 'eslint' then
-    local eslint_opts = require('user.lsp.settings.eslint')
-    opts = vim.tbl_deep_extend('force', eslint_opts, opts)
-  end
+mason.setup()
+mason_lspconfig.setup({
+    ensure_installed = servers,
+})
 
-  if server.name == "tsserver" then
-    local eslint_opts = require('user.lsp.settings.tsserver')
-    opts = vim.tbl_deep_extend('force', eslint_opts, opts)
-  end
+for _, server in pairs(servers) do
+    local opts = {
+        on_attach = require("user.lsp.handlers").on_attach,
+        capabilities = require("user.lsp.handlers").capabilities,
+    }
+    local has_custom_opts, server_custom_opts = pcall(require, "user.lsp.settings." .. server)
+    if has_custom_opts then
+        opts = vim.tbl_deep_extend("force", opts, server_custom_opts)
+    end
+    -- add a special case for tsserver, since we want to go through typescript.nvim here
+    if server == "tsserver" then
+        require("typescript").setup({ server = opts })
+    else
+        lspconfig[server].setup(opts)
+    end
+end
 
-  server:setup(opts)
-end)
