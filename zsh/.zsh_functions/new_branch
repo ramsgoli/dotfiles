@@ -1,0 +1,8 @@
+function new_branch() {
+  if [[ -z "$1" ]]; then 
+    echo "provide a branch name as the first argument"
+    return 1
+  fi
+
+  git switch -c $1 origin/develop
+}

@@ -112,3 +112,6 @@ export EDITOR=nvim
 
 # source work-specific file if work laptop
 [[ $(hostname -s) == 'rams-work-mbp' ]] && source ${ZDOTDIR}/.zshrc_for_work
+
+export PATH="$PATH:$(go env GOPATH)/bin"
+eval "$(direnv hook zsh)"

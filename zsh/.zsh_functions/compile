@@ -1,0 +1,8 @@
+compile() {
+  cd ~/heap/heap && env NODE_OPTIONS=--max-old-space-size=8192 \
+    ./node_modules/typescript/bin/tsc \
+      --incremental \
+      --outDir /tmp/tsc_qe \
+      --project context/event_store/query_engine/tsconfig.json \
+      --watch
+}
