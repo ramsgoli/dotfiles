@@ -14,7 +14,7 @@ local function filter(arr, fn)
 end
 
 local function filterReactDTS(value)
-  return string.match(value.uri, 'react/index.d.ts') == nil
+  return string.match(value.targetUri, 'react/index.d.ts') == nil
 end
 
 local function location_handler(err, result, method, ...)
@@ -25,7 +25,6 @@ local function location_handler(err, result, method, ...)
 
   vim.lsp.handlers['textDocument/definition'](err, result, method, ...)
 end
-
 
 return {
   handlers = {

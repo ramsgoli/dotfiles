@@ -62,6 +62,8 @@ return packer.startup(function(use)
   use 'neovim/nvim-lspconfig' -- barebones LSP config (core neovim)
   use 'williamboman/mason.nvim' -- Manages installation of various language servers
   use 'williamboman/mason-lspconfig.nvim'
+  use 'jose-elias-alvarez/typescript.nvim'
+  use 'j-hui/fidget.nvim'
 
   -- with signatures
   use 'ray-x/lsp_signature.nvim'
@@ -81,8 +83,9 @@ return packer.startup(function(use)
   -- lualine
   use 'nvim-lualine/lualine.nvim'
 
-  -- Gitsigns
-  use 'lewis6991/gitsigns.nvim'
+  -- git stuff
+  use 'dinhhuy258/git.nvim'
+  use 'f-person/git-blame.nvim'
 
   -- Indent blanklines
   use 'lukas-reineke/indent-blankline.nvim'
@@ -92,8 +95,9 @@ return packer.startup(function(use)
 
   -- custom plugins
   -- use '~/my_neovim_plugins/compileroo'
+  --
 
-  use 'jose-elias-alvarez/typescript.nvim'
+  use 'mattkubej/jest.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
