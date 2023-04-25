@@ -6,7 +6,7 @@ end
 local mason = require("mason")
 local lspconfig = require("lspconfig")
 
-local servers = { "sumneko_lua", "tsserver", "eslint", "terraformls", "gopls", "bashls" }
+local servers = { "lua_ls", "tsserver", "eslint", "terraformls", "gopls", "bashls" }
 
 mason.setup()
 mason_lspconfig.setup({

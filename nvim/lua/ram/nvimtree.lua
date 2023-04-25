@@ -8,7 +8,6 @@ vim.api.nvim_create_user_command('Find', 'NvimTreeFindFile', { nargs = 0 })
 
 require('nvim-tree').setup {
   respect_buf_cwd = true,
-  create_in_closed_folder = true,
   actions = {
     open_file = {
       resize_window = true,
@@ -25,7 +24,7 @@ require('nvim-tree').setup {
     },
     icons = {
       padding = ' ',
-      symlink_arrow =  '>> ',
+      symlink_arrow = '>> ',
       show = {
         git = true,
         folder = true,
@@ -33,25 +32,25 @@ require('nvim-tree').setup {
         folder_arrow = false,
       },
       glyphs = {
-        symlink= "",
-        git= {
-          unstaged= "✗",
-          staged= "✓",
-          unmerged= "",
-          renamed= "➜",
-          untracked= "★",
-          deleted= "",
-          ignored= "◌"
+        symlink = "",
+        git = {
+          unstaged = "✗",
+          staged = "✓",
+          unmerged = "",
+          renamed = "➜",
+          untracked = "★",
+          deleted = "",
+          ignored = "◌"
         },
-        folder= {
-          arrow_open= "",
-          arrow_closed= "",
-          default= "",
-          open= "",
-          empty= "",
-          empty_open= "",
-          symlink= "",
-          symlink_open= "",
+        folder = {
+          arrow_open = "",
+          arrow_closed = "",
+          default = "",
+          open = "",
+          empty = "",
+          empty_open = "",
+          symlink = "",
+          symlink_open = "",
         }
       }
     },

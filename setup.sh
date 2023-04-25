@@ -76,10 +76,9 @@ echo "done"
 echo "Installing golang"
 brew install go
 
-echo "Installing neovim's plugins with PlugInstall..."
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-nvim +PlugInstall +qall
+echo "Installing packer to manager neovim plugins..."
+git clone --depth 1 https://github.com/wbthomason/packer.nvim \
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 echo "done"
 
 
@@ -95,10 +94,7 @@ brew install git
 git config --global credential.helper osxkeychain
 
 APPLICATIONS=(
-	iterm2
-	alfred
 	spotify
-	notion
 	docker
 )
 echo "Installing the following applications: ${APPLICATIONS[@]}..."
@@ -113,9 +109,7 @@ echo "Now installing a couple more packages with brew"
 PACKAGES=(
 	fzf
 	ripgrep
-	firebase-cli
 	docker
-	hugo
 )
 
 for package in "${PACKAGES[@]}"

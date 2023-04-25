@@ -1,0 +1,4 @@
+cluster_for_env() {
+  ID="$1"
+  grpcurl -d "{\"env_id\": \"${ID}\"}"  s2-control-plane-api.heap-services.net:443 heap.event_store.s2_control_plane.v1.S2ControlPlaneApiService/ClusterMapping
+}

@@ -55,7 +55,7 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git warhol zsh-syntax-highlighting) 
+plugins=(git warhol zsh-syntax-highlighting vi-mode) 
 
 source $ZSH/oh-my-zsh.sh
 
@@ -115,3 +115,5 @@ export EDITOR=nvim
 
 export PATH="$PATH:$(go env GOPATH)/bin"
 eval "$(direnv hook zsh)"
+
+export PATH="${PATH}:${ZDOTDIR}/git_functions"

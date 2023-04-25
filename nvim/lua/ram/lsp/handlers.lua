@@ -71,7 +71,7 @@ local function lsp_format_document(client)
       [[
       augroup lsp_format_document
         autocmd! * <buffer>
-        autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+        autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
       augroup end
       ]],
       false
@@ -99,7 +99,13 @@ local function lsp_keymaps(bufnr)
     opts
   )
   vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+  vim.api.nvim_create_user_command(
+    'Format',
+    function()
+      vim.lsp.buf.format({ async = true })
+    end,
+    {}
+  )
 end
 
 M.on_attach = function(client, bufnr)
