@@ -1,5 +1,0 @@
-vault_shell() {
-  aws ssm start-session \
-    --target $(aws ec2 describe-instances --filters "Name=tag:Name,Values=prod-vault-bastion" "Name=instance-state-name,Values=running" --query "Reservations[0].Instances[0].InstanceId" --output text) \
-    --document-name StartVaultShell
-}

@@ -41,8 +41,8 @@ packer.init {
 return packer.startup(function(use)
   -- My plugins here
   use "wbthomason/packer.nvim" -- Have packer manage itself
-  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
-  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+  use "nvim-lua/popup.nvim"    -- An implementation of the Popup API from vim in Neovim
+  use "nvim-lua/plenary.nvim"  -- Useful lua functions used ny lots of plugins
   use "nvim-telescope/telescope.nvim"
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
 
@@ -59,8 +59,6 @@ return packer.startup(function(use)
 
   -- LSP
   use 'neovim/nvim-lspconfig' -- barebones LSP config (core neovim)
-  use 'williamboman/mason.nvim' -- Manages installation of various language servers
-  use 'williamboman/mason-lspconfig.nvim'
   use 'jose-elias-alvarez/typescript.nvim'
   use 'j-hui/fidget.nvim'
 
@@ -92,16 +90,17 @@ return packer.startup(function(use)
   -- autopairs
   use 'windwp/nvim-autopairs'
 
-  -- custom plugins
-  -- use '~/my_neovim_plugins/compileroo'
-  --
-
-  use 'mattkubej/jest.nvim'
+  -- scala metals
+  use {
+    'scalameta/nvim-metals',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    }
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
-
 end)

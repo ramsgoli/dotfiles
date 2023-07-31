@@ -1,2 +1,7 @@
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$PATH:$(go env GOPATH)/bin"
+# PATH environment variable modifications should be made here.
+export PATH="${PATH}:$(go env GOPATH)/bin"
+export PATH="${PATH}:/Applications/IntelliJ IDEA.app/Contents/MacOS"
+
+# >>> coursier install directory >>>
+export PATH="$PATH:/Users/ram/Library/Application Support/Coursier/bin"
+# <<< coursier install directory <<<

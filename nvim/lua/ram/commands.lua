@@ -1,9 +1,12 @@
-vim.api.nvim_create_user_command(
+local function c(name, fn)
+  vim.api.nvim_create_user_command(name, fn, {})
+end
+
+c(
   'CopyFileName',
   function()
     vim.fn.setreg('*', vim.fn.expand('%:p'))
-  end,
-  {}
+  end
 )
 
 local function openJira()
@@ -27,32 +30,32 @@ local function openGitHub()
   vim.fn.system('open ' .. url)
 end
 
-vim.api.nvim_create_user_command(
-  'OpenGitHub',
-  openGitHub,
-  {}
-)
+c('OpenGitHub', openGitHub)
 
-vim.api.nvim_create_user_command(
+c(
   'Buffers',
   function()
     vim.api.nvim_command('Telescope buffers')
-  end,
-  {}
+  end
 )
 
-vim.api.nvim_create_user_command(
+c(
   'Symbols',
   function()
     vim.api.nvim_command('Telescope lsp_dynamic_workspace_symbols')
-  end,
-  {}
+  end
 )
 
-vim.api.nvim_create_user_command(
+c(
   'DocSymbols',
   function()
     vim.api.nvim_command('Telescope lsp_document_symbols')
-  end,
-  {}
+  end
+)
+
+c(
+  'Rename',
+  function()
+    vim.lsp.buf.rename()
+  end
 )

@@ -1,3 +1,0 @@
-process_on_port() {
-  lsof -nP -iTCP -sTCP:LISTEN | grep $1
-}

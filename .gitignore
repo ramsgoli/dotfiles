@@ -2,3 +2,8 @@
 .zsh_history
 .netrwhist
 nvim/plugin/packer_compiled.lua
+**/.zsh_sessions/
+
+# work related
+zsh/zsh_functions
+zsh/.zshrc_work

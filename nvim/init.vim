@@ -15,8 +15,6 @@ lua require('ram.indent_blankline')
 lua require('ram.autopairs')
 lua require('ram.commands')
 lua require('ram.fidget')
-lua require('ram.jest')
-
 "}}}
 
 " General Config {{{
@@ -27,6 +25,7 @@ command! Refresh execute 'bufdo :e' | syntax enable
 set ignorecase " ignore case when searching
 set smartcase " unless the search query contains a capital letter
 set wildignore+=*/node_modules/*
+set wildignore+=context/session_replay/*
 " }}}
 
 " User Interface {{{
@@ -34,12 +33,3 @@ set splitright
 set number relativenumber
 set nowrap
 " }}}
-
-" Key Mappings {{{
-nnoremap <silent> <Tab> :bn<CR>
-nnoremap <silent> <S-Tab> :bp<CR>
-nnoremap <silent> <C-c> :bp\|bd #<CR>
-
-" delete all buffers except the current one
-noremap <leader>da :%bd\|e#\|bd#<cr>\|'"
-

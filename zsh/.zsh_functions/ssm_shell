@@ -1,3 +1,0 @@
-ssm_shell() {
-  aws ssm start-session --target $1
-}

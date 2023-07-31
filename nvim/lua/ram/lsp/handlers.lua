@@ -46,12 +46,10 @@ M.setup = function()
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
     border = "rounded",
   })
-
 end
 
-local function lsp_highlight_document(client)
-  -- Set autocommands conditional on server_capabilities
-  if client.server_capabilities.document_highlight then
+M.lsp_highlight_document = function(client)
+  if client.server_capabilities.documentHighlightProvider then
     vim.api.nvim_exec(
       [[
       augroup lsp_document_highlight
@@ -65,7 +63,7 @@ local function lsp_highlight_document(client)
   end
 end
 
-local function lsp_format_document(client)
+M.lsp_format_document = function(client)
   if client.server_capabilities.documentFormattingProvider then
     vim.api.nvim_exec(
       [[
@@ -79,7 +77,7 @@ local function lsp_format_document(client)
   end
 end
 
-local function lsp_keymaps(bufnr)
+M.lsp_keymaps = function(bufnr)
   local opts = { noremap = true, silent = true }
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
@@ -117,9 +115,9 @@ M.on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
   end
 
-  lsp_keymaps(bufnr)
-  lsp_highlight_document(client)
-  lsp_format_document(client)
+  M.lsp_keymaps(bufnr)
+  M.lsp_highlight_document(client)
+  M.lsp_format_document(client)
 end
 
 local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
