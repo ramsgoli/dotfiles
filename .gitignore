@@ -7,3 +7,4 @@ nvim/plugin/packer_compiled.lua
 # work related
 zsh/zsh_functions
 zsh/.zshrc_work
+**/*.bak
