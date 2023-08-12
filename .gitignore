@@ -3,8 +3,9 @@
 .netrwhist
 nvim/plugin/packer_compiled.lua
 **/.zsh_sessions/
+**/*.bak
 
 # work related
-zsh/zsh_functions
+zsh/work_zsh_functions
 zsh/.zshrc_work
-**/*.bak
+zsh/.zprofile

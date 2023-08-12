@@ -15,6 +15,15 @@ bindkey "^?" backward-delete-char
 # source aliases
 source "${ZDOTDIR}/aliases.zsh"
 
+# load functions
+fpath=("${ZDOTDIR}/zsh_functions" "${fpath[@]}");
+# autoload all files in that directory so they are available to use.
+# unfunction all functions first, since autoload doesn't "reload"
+for f in $fpath[1]/*(.:t); do
+  unfunction "${f}" 2>/dev/null
+done
+autoload -U $fpath[1]/*(.:t)
+
 # set prompt
 # `setopt prompt_subst` enables parameter expansion, command substitution, and arithmetic expansion in the prompt string.
 # This means that any shell commands or variables included in the prompt string will be evaluated and expanded when the prompt is displayed,

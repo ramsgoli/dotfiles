@@ -1,0 +1,12 @@
+function is_git_dirty() {
+  if ! git rev-parse --is-inside-work-tree 2>/dev/null 1>&2; then
+    return
+  fi
+
+  git diff --quiet
+  RET=$?
+  if [[ $RET -ne 0 ]]; then
+    echo "  "
+  fi
+}
+
