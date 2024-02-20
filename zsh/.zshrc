@@ -46,7 +46,3 @@ export PGPASSFILE="${XDG_CONFIG_HOME}/.pgpass"
 # export GOROOT
 export GOROOT=$(go env GOROOT)
 
-if [[ `arch` == "arm64" ]]; then
-  # work laptop
-  source "${ZDOTDIR}/.zshrc_work"
-fi
