@@ -1,7 +1,7 @@
+require('ram.plugins')
 require('ram.config')
 require('ram.notify')
 require('ram.keymaps')
-require('ram.plugins')
 require('ram.treesitter')
 require('ram.telescope')
 require('ram.cmp')
