@@ -1,7 +1,4 @@
-local log = require 'vim.lsp.log'
-local util = require 'vim.lsp.util'
 local vim = vim
-local api = vim.api
 
 local M = {}
 
@@ -48,44 +45,53 @@ M.setup = function()
   })
 end
 
-M.lsp_highlight_document = function(client)
-  if client.server_capabilities.documentHighlightProvider then
-    vim.api.nvim_exec(
-      [[
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]] ,
-      false
-    )
-  end
+M.lsp_highlight_document = function(bufnr)
+  local group = vim.api.nvim_create_augroup('lsp_document_highlight', { clear = true })
+  vim.api.nvim_create_autocmd(
+    {
+      "CursorHold"
+    },
+    {
+      buffer = bufnr,
+      group = group,
+      command = "lua vim.lsp.buf.document_highlight()"
+    }
+  )
+
+  vim.api.nvim_create_autocmd(
+    {
+      "CursorMoved"
+    },
+    {
+      buffer = bufnr,
+      group = group,
+      command = "lua vim.lsp.buf.clear_references()"
+    }
+  )
 end
 
-M.lsp_format_document = function(client)
-  if client.server_capabilities.documentFormattingProvider then
-    vim.api.nvim_exec(
-      [[
-      augroup lsp_format_document
-        autocmd! * <buffer>
-        autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
-      augroup end
-      ]],
-      false
-    )
-  end
+M.lsp_format_document = function(bufnr)
+  vim.api.nvim_create_autocmd(
+    {
+      "BufWritePre"
+    },
+    {
+      buffer = bufnr,
+      group = vim.api.nvim_create_augroup('lsp_format_document', { clear = true }),
+      command = "lua vim.lsp.buf.format()"
+    }
+  )
 end
 
 M.lsp_keymaps = function(bufnr)
   local opts = { noremap = true, silent = true }
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>:Telescope lsp_definitions<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>:Telescope lsp_references<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
@@ -97,7 +103,8 @@ M.lsp_keymaps = function(bufnr)
     opts
   )
   vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
-  vim.api.nvim_create_user_command(
+  vim.api.nvim_buf_create_user_command(
+    bufnr,
     'Format',
     function()
       vim.lsp.buf.format({ async = true })
@@ -107,17 +114,15 @@ M.lsp_keymaps = function(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-  if client.name == "eslint" then
-    client.server_capabilities.documentFormattingProvider = true
-  end
-
-  if client.name == "tsserver" then
-    client.server_capabilities.documentFormattingProvider = false
-  end
-
   M.lsp_keymaps(bufnr)
-  M.lsp_highlight_document(client)
-  M.lsp_format_document(client)
+
+  if client.server_capabilities.documentHighlightProvider then
+    M.lsp_highlight_document(bufnr)
+  end
+
+  if client.server_capabilities.documentFormattingProvider then
+    M.lsp_format_document(bufnr)
+  end
 end
 
 local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")

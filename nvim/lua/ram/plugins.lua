@@ -1,30 +1,29 @@
 local fn = vim.fn
 
 -- Automatically install packer
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   PACKER_BOOTSTRAP = fn.system {
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
+    'git',
+    'clone',
+    '--depth',
+    '1',
+    'https://github.com/wbthomason/packer.nvim',
     install_path,
   }
-  print "Installing packer close and reopen Neovim..."
+  print 'Installing packer close and reopen Neovim...'
   vim.cmd [[packadd packer.nvim]]
 end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]]
+vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+  pattern = 'plugins.lua',
+  group = vim.api.nvim_create_augroup('packer_user_config', { clear = true }),
+  command = 'source <afile> | PackerSync'
+})
 
 -- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
+local status_ok, packer = pcall(require, 'packer')
 if not status_ok then
   return
 end
@@ -33,18 +32,18 @@ end
 packer.init {
   display = {
     open_fn = function()
-      return require("packer.util").float { border = "rounded" }
+      return require('packer.util').float { border = 'rounded' }
     end,
   },
 }
 
 return packer.startup(function(use)
   -- My plugins here
-  use "wbthomason/packer.nvim" -- Have packer manage itself
-  use "nvim-lua/popup.nvim"    -- An implementation of the Popup API from vim in Neovim
-  use "nvim-lua/plenary.nvim"  -- Useful lua functions used ny lots of plugins
-  use "nvim-telescope/telescope.nvim"
-  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
+  use 'wbthomason/packer.nvim' -- Have packer manage itself
+  use 'nvim-lua/popup.nvim'    -- An implementation of the Popup API from vim in Neovim
+  use 'nvim-lua/plenary.nvim'  -- Useful lua functions used ny lots of plugins
+  use 'nvim-telescope/telescope.nvim'
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
   -- cmp
   use 'hrsh7th/cmp-nvim-lsp'
@@ -60,14 +59,18 @@ return packer.startup(function(use)
   -- LSP
   use 'neovim/nvim-lspconfig' -- barebones LSP config (core neovim)
   use 'jose-elias-alvarez/typescript.nvim'
+  use 'rcarriga/nvim-notify'
+  use 'jose-elias-alvarez/null-ls.nvim'
+
+  -- fidget
   use 'j-hui/fidget.nvim'
 
   -- with signatures
   use 'ray-x/lsp_signature.nvim'
 
   -- Colors
-  use 'lunarvim/colorschemes'
   use 'folke/tokyonight.nvim'
+  use 'rebelot/kanagawa.nvim'
 
   -- NvimTree
   use {
@@ -90,17 +93,9 @@ return packer.startup(function(use)
   -- autopairs
   use 'windwp/nvim-autopairs'
 
-  -- scala metals
-  use {
-    'scalameta/nvim-metals',
-    requires = {
-      'nvim-lua/plenary.nvim'
-    }
-  }
-
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
-    require("packer").sync()
+    packer.sync()
   end
 end)

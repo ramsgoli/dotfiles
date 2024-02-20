@@ -1,0 +1,6 @@
+find_replace_all() {
+	OLD=$1
+	NEW=$2
+
+	rg "$OLD" -l | while read -r file; do sed -i '' -e s/"$OLD"/"$NEW"/g "${file}"; done
+}

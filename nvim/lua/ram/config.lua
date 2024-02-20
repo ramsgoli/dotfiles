@@ -1,10 +1,16 @@
 -- General config
-vim.opt.hidden = true -- hide buffers when navigating to different files
-vim.opt.backup = false -- don't create backup files
+vim.opt.hidden = true   -- hide buffers when navigating to different files
+vim.opt.backup = false  -- don't create backup files
 vim.opt.autoread = true -- Re-read file if it changes outside of vim
 vim.opt.updatetime = 50
 vim.opt.shell = '/bin/zsh'
 vim.opt.completeopt = { 'menuone', 'noselect' }
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.wrap = false
+vim.opt.splitright = true
 
 -- Indentation
 vim.opt.autoindent = true

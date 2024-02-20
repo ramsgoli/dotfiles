@@ -4,7 +4,6 @@ if not status_ok then
 end
 
 configs.setup {
-  ensure_installed = "all",
   sync_install = false, -- to install languages async
   highlight = {
     enable = true,

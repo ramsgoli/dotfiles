@@ -1,0 +1,8 @@
+function print_git_branch() {
+  if git rev-parse --is-inside-work-tree 2>/dev/null 1>&2; then
+    BRANCH=$(git branch --show-current)
+    # If branch is empty, we're likely detached. Print the first line of `git status`
+    [[ -z "${BRANCH}" ]] && BRANCH=$(git status | head -n 1)
+    echo "%F{red} %Bgit:%b(${BRANCH})%F{reset_color}"
+  fi
+}

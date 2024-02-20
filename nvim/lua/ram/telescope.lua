@@ -9,14 +9,6 @@ if not actions_ok then
   return
 end
 
-vim.cmd[[
-  command! Buffers execute 'Telescope buffers'
-]]
-
-vim.cmd[[
-  command! Symbols execute 'Telescope lsp_dynamic_workspace_symbols'
-]]
-
 telescope.setup {
   defaults = {
     prompt_prefix = ' ',
@@ -29,3 +21,4 @@ telescope.setup {
     },
   },
 }
+
