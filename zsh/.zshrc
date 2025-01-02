@@ -1,3 +1,25 @@
+# +##########
+# .zshrc used for setting up interactive sessions only
+##########
+
+# set up completions
+autoload -U compinit; compinit
+
+# kitty options
+# disabled the automatic shell integration and sets it up manually, so that kitty config is applied in sub-shells
+# See https://sw.kovidgoyal.net/kitty/shell-integration/#manual-shell-integration
+if test -n "$KITTY_INSTALLATION_DIR"; then
+  export KITTY_SHELL_INTEGRATION="enabled"
+  autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
+  kitty-integration
+  unfunction kitty-integration
+fi
+
+# append new entries to history file as soon as they're entered
+setopt inc_append_history
+export HISTSIZE=10000
+export SAVEHIST=10000
+
 # fzf options
 export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
