@@ -53,7 +53,7 @@ autoload -U $fpath[1]/*(.:t)
 # Single quotes are needed to ensure that the prompt isn't evaluted when it's set.
 setopt prompt_subst 
 NEWLINE=$'\n'
-PROMPT='%F{yellow}[%D{%f/%m/%y} %D{%L:%M:%S}]%F{reset_color} %B%F{cyan}%~%F{reset_color}%b$(print_git_branch)%F{yellow}$(is_git_dirty)%F{reset_color}${NEWLINE}> '
+PROMPT='%B%F{cyan}%~%F{reset_color}%b$(print_git_branch)%F{yellow}$(is_git_dirty)%F{reset_color}${NEWLINE}> '
 # PROMPT='%B%F{cyan}%~%F{reset_color}%b%F{yellow}$(is_git_dirty)%F{reset_color}${NEWLINE}> '
 
 # !! should not execute the last command, only print it to the edit buffer
