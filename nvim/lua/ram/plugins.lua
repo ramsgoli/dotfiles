@@ -58,7 +58,6 @@ return packer.startup(function(use)
 
   -- LSP
   use 'neovim/nvim-lspconfig' -- barebones LSP config (core neovim)
-  use 'jose-elias-alvarez/typescript.nvim'
   use 'rcarriga/nvim-notify'
   use 'jose-elias-alvarez/null-ls.nvim'
 
@@ -92,6 +91,11 @@ return packer.startup(function(use)
 
   -- autopairs
   use 'windwp/nvim-autopairs'
+
+  use {
+    "pmizio/typescript-tools.nvim",
+    requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

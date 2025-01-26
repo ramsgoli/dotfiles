@@ -136,3 +136,7 @@ null_ls.register({
     end,
   },
 })
+
+require('typescript-tools').setup({
+  on_attach = handlers.on_attach
+})
