@@ -59,3 +59,10 @@ c(
     vim.lsp.buf.rename()
   end
 )
+
+c(
+  'Find',
+  function()
+    vim.api.nvim_command('NvimTreeFindFile')
+  end
+)

@@ -1,12 +1,11 @@
--- Automatically close NvimTree if it's the last split
--- :TODO: doesn't work if you open file via Telescope find_files for some reason
--- vim.cmd([[
--- autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
--- ]])
-
-vim.api.nvim_create_user_command('Find', 'NvimTreeFindFile', { nargs = 0 })
-
-require('nvim-tree').setup {
+return {
+  "nvim-tree/nvim-tree.lua",
+  version = "*",
+  lazy = false,
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+  },
+  opts = {
   respect_buf_cwd = true,
   actions = {
     open_file = {
@@ -55,4 +54,5 @@ require('nvim-tree').setup {
       }
     },
   }
+}
 }

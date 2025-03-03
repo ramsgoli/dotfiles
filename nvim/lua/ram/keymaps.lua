@@ -42,3 +42,5 @@ keymap("n", "<leader>g", lua_command, opts)
 keymap("n", "<leader>cl", "<CMD>ccl<CR>", opts);
 
 keymap("n", "gs", "<CMD>lua require('telescope.builtin').grep_string()<CR>", opts);
+
+keymap("n", "<leader>b", "<CMD>GitBlame<CR>", opts)
