@@ -22,9 +22,12 @@ return {
       settings = {
         typescript = {
           tsserver = {
-            maxTsServerMemory = 8192,
+            maxTsServerMemory = 12288
           },
         },
+        vtsls = {
+          autoUseWorkspaceTsdk = true
+        }
       },
       capabilities = capabilities,
     })
