@@ -2,20 +2,17 @@ return {
   "scalameta/nvim-metals",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "hrsh7th/cmp-nvim-lsp",
-    "j-hui/fidget.nvim"
+    "j-hui/fidget.nvim",
+    'saghen/blink.cmp',
   },
   ft = { "scala", "sbt", "java" },
   opts = function()
     local metals_config = require("metals").bare_config()
-    local handlers = require('ram.lsp.handlers')
-    metals_config.on_attach = function(client, bufnr)
-      handlers.on_attach(client, bufnr)
-    end
+    local lspSettings = require('ram.lsp_settings')
 
+    metals_config.on_attach = lspSettings.on_attach
     metals_config.init_options.statusBarProvider = "off"
-    metals_config.capabilities = handlers.capabilities
-
+    metals_config.capabilities = require('blink.cmp').get_lsp_capabilities()
     return metals_config
   end,
   config = function(self, metals_config)

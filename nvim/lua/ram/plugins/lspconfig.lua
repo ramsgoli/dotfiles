@@ -1,21 +1,24 @@
 return {
   'neovim/nvim-lspconfig',
+  dependencies = { 'saghen/blink.cmp' },
   lazy = false,
   config = function()
     local lspconfig = require('lspconfig')
     local util = require('lspconfig/util')
-    local handlers = require('ram.lsp.handlers')
-    handlers.setup()
+    local lspSettings = require('ram.lsp_settings')
+    lspSettings.setup()
+    local capabilities = require('blink.cmp').get_lsp_capabilities()
 
     lspconfig.eslint.setup({
       on_attach = function(client, bufnr)
         client.server_capabilities.documentFormattingProvider = true
-        handlers.on_attach(client, bufnr)
-      end
+        lspSettings.on_attach(client, bufnr)
+      end,
+      capabilities = capabilities,
     })
 
     lspconfig.vtsls.setup({
-      on_attach = handlers.on_attach,
+      on_attach = lspSettings.on_attach,
       settings = {
         typescript = {
           tsserver = {
@@ -23,19 +26,23 @@ return {
           },
         },
       },
+      capabilities = capabilities,
     })
 
     lspconfig.terraformls.setup({
-      on_attach = handlers.on_attach
+      on_attach = lspSettings.on_attach,
+      capabilities = capabilities,
     })
 
     lspconfig.buf_ls.setup {
       root_dir = util.root_pattern("buf.yaml", ".git"),
-      on_attach = handlers.on_attach
+      on_attach = lspSettings.on_attach,
+      capabilities = capabilities,
     }
 
     lspconfig.lua_ls.setup {
-      on_attach = handlers.on_attach,
+      on_attach = lspSettings.on_attach,
+      capabilities = capabilities,
       on_init = function(client)
         if client.workspace_folders then
           local path = client.workspace_folders[1].name
@@ -72,6 +79,7 @@ return {
     -- require('go').setup({})
     lspconfig.gopls.setup {
       cmd = { "gopls", "serve" },
+      capabilities = capabilities,
       filetypes = { "go", "gomod" },
       root_dir = util.root_pattern("go.work", "go.mod", ".git"),
       settings = {
@@ -83,7 +91,7 @@ return {
           staticcheck = true,
         },
       },
-      on_attach = handlers.on_attach
+      on_attach = lspSettings.on_attach
     }
   end
 }
