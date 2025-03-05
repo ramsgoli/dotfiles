@@ -14,6 +14,17 @@ return {
       end
     })
 
+    lspconfig.vtsls.setup({
+      on_attach = handlers.on_attach,
+      settings = {
+        typescript = {
+          tsserver = {
+            maxTsServerMemory = 8192,
+          },
+        },
+      },
+    })
+
     lspconfig.terraformls.setup({
       on_attach = handlers.on_attach
     })
