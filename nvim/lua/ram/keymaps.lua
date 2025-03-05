@@ -29,18 +29,7 @@ keymap("n", "<leader>l", ":nohl<CR>", opts)
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
--- NvimTree
-keymap("n", "<leader>n", ":NvimTreeToggle<CR>", opts)
-
--- Telescope
-keymap("n", "<leader>f", "<CMD>lua require('telescope.builtin').find_files({hidden = true})<CR>", opts)
-
-local lua_command = "<CMD>lua require('telescope.builtin').live_grep()<CR>"
-keymap("n", "<leader>g", lua_command, opts)
-
 -- close quickfix list
 keymap("n", "<leader>cl", "<CMD>ccl<CR>", opts);
-
-keymap("n", "gs", "<CMD>lua require('telescope.builtin').grep_string()<CR>", opts);
 
 keymap("n", "<leader>b", "<CMD>GitBlame<CR>", opts)
