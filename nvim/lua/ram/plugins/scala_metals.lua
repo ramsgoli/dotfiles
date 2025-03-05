@@ -13,6 +13,9 @@ return {
     metals_config.on_attach = lspSettings.on_attach
     metals_config.init_options.statusBarProvider = "off"
     metals_config.capabilities = require('blink.cmp').get_lsp_capabilities()
+    metals_config.settings = {
+      useGlobalExecutable = true,
+    }
     return metals_config
   end,
   config = function(self, metals_config)
