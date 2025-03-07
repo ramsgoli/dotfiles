@@ -87,6 +87,7 @@ return {
       root_dir = util.root_pattern("go.work", "go.mod", ".git"),
       settings = {
         gopls = {
+          semanticTokens = true,
           env = { GOFLAGS = "-tags=integration,integration_db_only,tools" },
           analyses = {
             unusedparams = true,
