@@ -31,6 +31,14 @@ return {
       nerd_font_variant = 'mono'
     },
 
+    completion = {
+      -- ... other completion options
+      documentation = {
+        auto_show = true,       -- Enable documentation preview on hover
+        auto_show_delay_ms = 200, -- Optional: Adjust the delay before showing documentation
+      },
+    },
+
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {

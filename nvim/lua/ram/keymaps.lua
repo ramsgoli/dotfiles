@@ -33,3 +33,5 @@ keymap("v", ">", ">gv", opts)
 keymap("n", "<leader>cl", "<CMD>ccl<CR>", opts);
 
 keymap("n", "<leader>b", "<CMD>GitBlame<CR>", opts)
+
+keymap("n", "<leader>md", "<CMD>m +1<CR>", opts)

@@ -1,5 +1,6 @@
 return {
   "scalameta/nvim-metals",
+  enabled = true,
   dependencies = {
     "nvim-lua/plenary.nvim",
     "j-hui/fidget.nvim",
@@ -20,9 +21,7 @@ return {
     metals_config.init_options.statusBarProvider = "off"
     metals_config.capabilities = require('blink.cmp').get_lsp_capabilities()
     metals_config.settings = {
-      useGlobalExecutable = true,
-      defaultBspToBuildTool = true,
-      javaHome = "/usr/local/Cellar/openjdk@8/1.8.0-402/libexec/openjdk.jdk/Contents/Home",
+      javaHome = "/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home",
       serverProperties = {
         "-Xmx16G",
         "-XX:MaxMetaspaceSize=4G",
